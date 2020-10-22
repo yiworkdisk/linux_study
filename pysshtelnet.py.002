@@ -1,0 +1,104 @@
+# Connet To Host Class
+import paramiko
+import telnetlib
+
+class cmdio :
+  cmdin = list()
+  cmdout = list()
+# Command Input & Output by Host
+class host_list :
+  ctype = str()
+  alias = str()
+  host = str()
+  port = int()
+  uid = str()
+  passwd = str()
+class c_host(host_list) :
+  cmd = list()
+  err = str()
+# Command Input & Ouput by Host File
+class c_host_file :
+    host_list = list()
+def cmd_file(host, cmdfile) :
+    str001 = list()
+    try :
+        file001 = open(cmdfile)
+        cmd001 = file001.read().strip().split('\n')
+        for cmd002 in cmd001 :
+            str001.append((cmd002, ''))
+        host.cmd = str001
+        file001.close()
+    except Exception as em :
+        host.err = 'Err : Command File : ' +str(em)
+  
+def host_file(file) :
+  str001 = list()
+  try:
+    file001 = open(file)
+    host_list = file001.read().strip().split('\n')
+    for host_info in host_list :
+      host001 = host_info.split(':')
+      str001.append((host001[0], int(host001[1]), host001[2], host001[3], host001[4]))
+    file001.close()
+  #Error Message
+  except Exception as em:
+    str001.append("Err : Host File : " + str(em))
+  return str001
+
+#SSH execute command
+def ssh_exec(host) :
+  cmdinout = list()
+  #Define SSH session
+  ssh = paramiko.SSHClient()
+  #Store SSH session key
+  ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+  #Open SSH session
+  try :
+    ssh.connect(host.host, host.port, host.uid, host.passwd)
+    #Excute commad
+    for cmdin, cmdout in host.cmd :
+      stdin, stdout, stderr = ssh.exec_command(cmdin)
+      cmdout = stdout.read().decode('ascii')
+      cmdinout.append((cmdin, cmdout))
+    host.cmd=cmdinout
+    #Close SSH session
+    ssh.close()
+  #Error Message
+  except Exception as em :
+     host.err = 'Err : SSH : ' + str(em)
+
+#telet execute command
+#def telnet_exec(host) :
+#  cmdinout = list()
+#  try :
+#    #Defile telnet session
+#    telnet = telnetlib.Telnet(host.host, port =(host.port))
+#    telnet.read_until('Username:'.encode('ascii'))
+#    telnet.write(host.uid.encode('ascii') + b'\n')
+#    telnet.read_until('Password:'.encode('ascii'))
+#    telnet.write(host.passws.encode('ascii') + b'\n')
+#    for cmdin, cmdout  in host.cmd :
+#      telnet.read_until('')
+#    telnet.close()
+#  except Exception as em:
+#    host.err = 'Err : Telnet : ' + str(em)
+#
+#SSH batch jon by File
+def cmd_exec_file(hostfile, cmdfile) :
+  host001 = c_host
+  host002 = c_host
+  str001 = list()
+  cmd_list = list()
+  h_list = list()
+  h_list = host_file(hostfile)
+  for host001.host, host001.port, host001.uid, host001.passwd, host001.ctype in h_list :
+    #str001.append('Host : ' + host + '\n')
+    cmd_file(host001, cmdfile)
+    if host001.ctype == 'ssh' :
+      ssh_exec(host001)
+      host002 = host001
+#    if host001.ctype == 'telnet' :
+#      ssh_exec(host001)
+    str001.append(host002)
+  return str001
+

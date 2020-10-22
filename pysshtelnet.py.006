@@ -1,0 +1,124 @@
+# Connet To Host Class
+import paramiko
+import telnetlib
+import pymysql
+
+# Command Input & Output by Host
+class host_list :
+  ctype = str()
+  alias = str()
+  host = str()
+  port = int()
+  uid = str()
+  passwd = str()
+class c_host(host_list) :
+  cmd = list()
+  err = str()
+  def clear(self) :
+    self.cmd = list()
+    self.err = str()
+    self.ctype = str()
+    self.alias = str()
+    self.host = str()
+    self.port = int()
+    self.uid = str()
+    self.passwd = str()
+
+  #From cmdfile to command list
+  def cmd_file(self, cmdfile) :
+    str001 = list()
+    cmd001 = list()
+    try :
+        file001 = open(cmdfile)
+        cmd001 = file001.read().strip().split('\n')
+        for cmd002 in cmd001 :
+            str001.append((cmd002, ''))
+        self.cmd = str001
+        file001.close()
+    except Exception as em :
+        self.err = 'Err : Command File : ' +str(em) + '\n'
+
+  #SSH execute command
+  def ssh_exec(self) :
+    if self.err != '' :
+      cmdinout = list()
+      #Define SSH session
+      ssh = paramiko.SSHClient()
+      #Store SSH session key
+      ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+      #Open SSH session
+      try :
+        ssh.connect(self.host, self.port, self.uid, self.passwd)
+        #Excute commad
+        for cmdin, cmdout in self.cmd :
+          stdin, stdout, stderr = ssh.exec_command(cmdin)
+          cmdout = stdout.read().decode('ascii')
+          cmdinout.append((cmdin, cmdout))
+        self.cmd=cmdinout
+        #Close SSH session
+        ssh.close()
+      #Error Message
+      except Exception as em :
+         self.err = 'Err : SSH : ' + str(em) + '\n'
+
+def host_file(file) :
+  str001 = list()
+  try:
+    file001 = open(file)
+    host_list = file001.read().strip().split('\n')
+    for host_info in host_list :
+      host001 = host_info.split(':')
+      str001.append((host001[0], int(host001[1]), host001[2], host001[3], host001[4]))
+    file001.close()
+  #Error Message
+  except Exception as em:
+    str001.append("Err : Host File : " + str(em) + '\n')
+  return str001
+
+#telet execute command
+#def telnet_exec(host) :
+#  cmdinout = list()
+#  try :
+#    #Defile telnet session
+#    telnet = telnetlib.Telnet(host.host, port =(host.port))
+#    telnet.read_until('Username:'.encode('ascii'))
+#    telnet.write(host.uid.encode('ascii') + b'\n')
+#    telnet.read_until('Password:'.encode('ascii'))
+#    telnet.write(host.passws.encode('ascii') + b'\n')
+#    for cmdin, cmdout  in host.cmd :
+#      telnet.read_until('')
+#    telnet.close()
+#  except Exception as em:
+#    host.err = 'Err : Telnet : ' + str(em)
+#
+#SSH batch jon by File
+def cmd_exec_file(hostfile, cmdfile) :
+  host001 = c_host()
+#  host002 = c_host
+  str001 = list()
+  cmd_list = list()
+  h_list = list()
+  i = 0
+  h_list = host_file(hostfile)
+  for host001.host, host001.port, host001.uid, host001.passwd, host001.ctype in h_list :
+    #str001.append('Host : ' + host + '\n')
+    host001.cmd_file(cmdfile)
+    if host001.ctype == 'ssh' :
+      host001.ssh_exec()
+#      host002 = host001
+#    if host001.ctype == 'telnet' :
+#      ssh_exec(host001)
+    str001.append(( host001.host, host001.port, host001.uid, host001.passwd, host001.ctype, host001.cmd, host001.err))
+    host001.clear()
+#    str001.append(host001)
+  return str001
+
+def conmysql(s_host, s_port, s_uid, s_passwd, s_db, s_char_set = 'utf8mb4') :
+  conn = pymysql.connection( host = s_host,
+                             user = uid,
+                             password = s_passwd,
+                             db = s_db,
+                             charset = s_char_set)
+  return conn
+
+

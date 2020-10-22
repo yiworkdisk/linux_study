@@ -1,0 +1,203 @@
+# Connet To Host Class
+import paramiko
+from paramiko_expect import SSHClientInteraction
+import telnetlib
+import pymysql
+import re
+import time
+
+# Command Input & Output by Host
+class host_list :
+  ctype = str()
+  alias = str()
+  host = str()
+  port = int()
+  uid = str()
+  passwd = str()
+class c_host(host_list) :
+  cmd = list()
+  err = str()
+  def __init__(self, host, port, uid, passwd, ctype) :
+    self.host = host
+    self.port = port
+    self.uid = uid
+    self.passwd = passwd
+    self.ctype = ctype
+  def clear(self) :
+    self.cmd = list()
+    self.err = str()
+    self.ctype = str()
+    self.alias = str()
+    self.host = str()
+    self.port = int()
+    self.uid = str()
+    self.passwd = str()
+
+  #From cmdfile to command list
+  def cmd_file(self, cmdfile) :
+    str001 = list()
+    cmd001 = list()
+    try :
+        file001 = open(cmdfile)
+        cmd001 = file001.read().strip().split('\n')
+        for cmd002 in cmd001 :
+            str001.append((cmd002, ''))
+        self.cmd = str001
+        file001.close()
+    except Exception as em :
+        self.err.append(('Err : Command File : ' +str(em) + '\n'))
+
+  #SSH execute command
+  def ssh_exec(self) :
+    cmdinout = list()
+    #Define SSH session
+    ssh = paramiko.SSHClient()
+    #Store SSH session key
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    try :
+      #Opne SSH session
+      ssh.connect(self.host, self.port, self.uid, self.passwd)
+      #Excute commad
+      for cmdin, cmdout in self.cmd :
+        stdin, stdout, stderr = ssh.exec_command(cmdin)
+        cmdout = stdout.read().decode('ascii')
+        cmdinout.append((cmdin, cmdout))
+      self.cmd=cmdinout
+      #Close SSH session
+      ssh.close()
+      #Error Message
+    except Exception as em :
+       self.err = 'Err : SSH : ' + str(em) + '\n'
+  #SSH execute command -2
+  def ssh_exec_1(self) :
+    cmdinout = list()
+      #Define SSH session
+    ssh = paramiko.SSHClient()
+      #Store SSH session key
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    try :
+      #Opne SSH session
+      ssh.connect(host = self.host, port = self.port, username = self.uid, password = self.passwd)
+      interact = SSHClientInteraction(client, timeout=10, display=True)
+      interact.expect(prompt_str)
+      interact.send('locale')
+
+      ssh.close()
+
+      #Error Message
+    except Exception as em :
+       self.err = 'Err : SSH : ' + str(em) + '\n'
+
+  #Telnet excute commd
+  def telnet_exec(self) :
+    cmdintout = list()
+    login_str = []
+    login_str.append(re.compile(b'ogin: $'))
+    login_str.append(re.compile(b'ogin:$'))
+    login_str.append(re.compile(b'sername: $'))
+    login_str.append(re.compile(b'sername:$'))
+    passwd_str = []
+    passwd_str.append(re.compile(b'word: $'))
+    passwd_str.append(re.compile(b'word:$'))
+    passwd_str.append(re.compile(b'Word: $'))
+    passwd_str.append(re.compile(b'word:$'))
+    prompt_srt = []
+    prompt_str.append(re.complie(b'# $'))
+    prompt_str.append(re.complie(b'#$'))
+    prompt_str.append(re.complie(b'\$ $'))
+    prompt_str.append(re.complie(b'\$$'))
+    prompt_str.append(re.complie(b'> $'))
+    prompt_str.append(re.complie(b'> $'))
+    ptompt001 = []
+    try :
+      #Open Telnet session
+      telnet = telnetlib.Telnet(self.host, port = (self.port))
+      which, mo, response = telnet.expect(login_str, 10)
+      if which == -1 : self.err = 'Err : Telnet : Loing Error'
+      else :
+        telnet.write(self.uid.encode('ascii') + b'\n')
+        which, mo, response = telnet.expect(passwd_str, 10)
+        # which : regular expression index
+        # mo : regular expression object
+        # response : input string
+        if which == -1 : self.err = 'Err : Telnet : Loing Error'
+        else :
+          telnet.write(self.passwd.encode('ascii') + b'\n')
+          which, mo, response = telnet.expect(prompt_str, 10)
+          if which == -1 : self.err = 'Err : Telnet : Loing Error'
+          else :
+            #Excute commad
+            for cmdin, cmdout in self.cmd :
+              telnet.write(cmdin.encode('ascii')+b'\n')
+              which, mo, response = telnet.expect(prompt_str,100)
+              if which == -1 :
+                cmdout = 'Err : Telnet : Command Error'
+              else :
+                prompt001 = response.decode().split('\n')
+                cmdout = prompt001[len(prompt001)-1] + response.decode() + '\n'
+              cmdinout.append((cmdin, cmdout))
+              self.cmd=cmdinout
+          #Close Telnet session
+      telnet.close()
+    except Exception as em:
+      self.err = 'Err : Telnet : ' + str(em) + '\n'
+
+def host_file(file) :
+  str001 = list()
+  try:
+    file001 = open(file)
+    host_list = file001.read().strip().split('\n')
+    for host_info in host_list :
+      host001 = host_info.split(':')
+      str001.append(c_host(host001[0], int(host001[1]), host001[2], host001[3], host001[4]))
+    file001.close()
+  #Error Message
+  except Exception as em:
+    str001.append("Err : Host File : " + str(em) + '\n')
+  return str001
+
+
+
+
+#Remote batch job by File
+def cmd_exec_file(hostfile, cmdfile) :
+  str001 = list()
+  h_list = list()
+  h_list = host_file(hostfile)
+  for host001 in h_list :
+    host001.cmd_file(cmdfile)
+    if host001.ctype == 'ssh' :
+      host001.ssh_exec()
+    if host001.ctype == 'telnet' :
+      host001.telnet_exec()
+    str001.append(host001)
+  return str001
+
+
+def f_output(output_file, h_list, option = 0) :
+  str001 = ''
+  fn = open(output_file, 'w')
+  if option == 0 :
+    for host001 in h_list :
+      str001 = '###################################################\n'
+      fn.write(str001)
+      str001 = ' Host : %s (Port : %i) \n' % (host001.host, host001.port)
+      fn.write(str001)
+      fn.write('###################################################\n')
+      for cmdin, cmdout in host001.cmd :
+        fn.write(' Command : %s \n'% cmdin)
+        fn.write(cmdout)
+  fn.close
+
+
+
+
+def conmysql(s_host, s_port, s_uid, s_passwd, s_db, s_char_set = 'utf8mb4') :
+  conn = pymysql.connection( host = s_host,
+                             user = uid,
+                             password = s_passwd,
+                             db = s_db,
+                             charset = s_char_set)
+  return conn
+
+
