@@ -62,10 +62,13 @@
           </iframe></div>
         <br>
         <h2>1. Install wordpress</h2>
-        <pre><code>$ sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-net-ldap2 php-net-ldap3 php-net-idna2 -y
+        <br>
+        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-net-ldap2 php-net-ldap3 php-net-idna2 -y
 $ wget https://wordpress.org/latest.zip
 $ unzip latest.zip</code></pre>
+        <br>
         <h2>2. Generate database for wordpress</h3>
+        <br>
 <hr>
 <pre>WordPress
    SQL database : wordpress
@@ -73,16 +76,20 @@ $ unzip latest.zip</code></pre>
    SQL password : test@test</pre>
 <hr>
 <p>※ Change it to suit your environment</p>
-        <pre><code>$ sudo mysql -u root
+        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mysql -u root
 > create database wordpress;
 > grant all on wordpress.* to wordpress@localhost identified by 'test@test';
 > flush privileges;
 > quit;</code></pre>
+        <br>
         <h2>3. Copy WordPress</h3>
-        <pre><code>$ sudo cp -R wordpress /var/www/html/wp
+        <br>
+        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp -R wordpress /var/www/html/wp
 $ sudo chown  -R www-data:www-data /var/www/html/wp
 $ sudo ls /var/www/html/ -l</code></pre>
+        <br>
         <h2>4. Generate WordPress Initial Setting</h3>
+        <br>
 <hr>
 <pre>WordPress
   SQL database : wordpress

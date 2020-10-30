@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,36 +61,37 @@
         <h2>1. 한글 설정</h2>
         <br>
         <h5>시간대 설정</h5>
-<pre><code>$ date
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ date
 $ sudo dpkg-reconfigure tzdata
 $ date</code></pre>
         <h5>Locale 설정</h5>
-<pre><code>$ sudo apt install language-pack-ko -y
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install language-pack-ko -y
 $ sudo dpkg-reconfigure locales
 $ locale</code></pre>
         <br>
         <h2>2. 글꼴 설치</h2>
         <br>
-<pre><code>$ sudo apt install fonts-nanum fonts-nanum-eco fonts-nanum-coding fonts-nanum-extra -y</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install fonts-nanum fonts-nanum-eco fonts-nanum-coding fonts-nanum-extra -y</code></pre>
         <br>
         <h2>3. FbTerm(Console 한글 지원) 설치</h2>
         <br>
         <h5>FbTerm 설치</h5>
-<pre><code>$ sudo apt install fbterm -y</code></pre>
-        <br>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install fbterm -y</code></pre>
         <h5>video 그룹에 사용자 계정 추가</h5>
-<pre><code>$ sudo cp /etc/group /etc/group.orig
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/group /etc/group.orig
 $ sudo nano /etc/group</code></pre>
         Change Configuration
-<pre><code>video:x:44:</code></pre>
-        ==>  
-<pre><code>video:x:44:test</code></pre>
-<pre><code>fbterm</code></pre>
+<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>video:x:44:</code></pre>
+        <h5>==><h5></h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>video:x:44:test</code></pre>
+        <h5>FbTerm 실행</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ fbterm</code></pre>
         <br>
         <h2>4. ibus (X-Window 한글지원) 설치</h2>
-<pre><code>$ sudo apt install ibus ibus-hangul -y</code></pre>
+        <br>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install ibus ibus-hangul -y</code></pre>
         ※ Ubuntu Server에 IceWM사용시 Fcitx을 설치하면 프로그램 충돌 발생
-        <pre><code>startx</code></pre>
+        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>startx</code></pre>
         <br>
 
       </div><!-- /.blog-post -->

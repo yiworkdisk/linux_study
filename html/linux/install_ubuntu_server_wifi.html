@@ -64,14 +64,14 @@
         <br>
         <h2>1. 한글 설정</h2>
         <h2>1. Install WPA</h2>
-<pre><code>$ sudo apt install wpasupplicant -y</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install wpasupplicant -y</code></pre>
         <br>
         <h2>2. Generate WiFi Setting</h2>
         <br>
-<pre><code>$ sudo cp /usr/share/doc/netplan/examples/wireless.yaml /etc/netplan/99_config.yaml
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /usr/share/doc/netplan/examples/wireless.yaml /etc/netplan/99_config.yaml
 $ sudo nano /etc/netplan/99_config.yaml</code></pre>
         <h10>Change Configuration</h10>
-<pre><code>network:
+<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>network:
   version: 2
   renderer: networkd
   wifis:
@@ -86,7 +86,7 @@ $ sudo nano /etc/netplan/99_config.yaml</code></pre>
         "network_ssid_name":
           password: "**********"</code></pre>
         <h10>==></h10>
-<pre><code>network:
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>network:
   version: 2
   renderer: networkd
   wifis:
@@ -101,7 +101,7 @@ $ sudo nano /etc/netplan/99_config.yaml</code></pre>
         "test":
           password: "testtest"</code></pre>
 
-<pre><code>$ sudo netplan apply</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo netplan apply</code></pre>
 
       </div><!-- /.blog-post -->
 

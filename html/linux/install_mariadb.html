@@ -51,7 +51,7 @@
     Environment
       Device :  Odroid-HC2 (or XU4)
       OS : Ubuntu-20.04
-      Host : test (192.168.101.10
+      Host : test (192.168.101.10)
 </pre>
         <hr>
         <div class="separator" style="clear: both; text-align: center;">
@@ -59,10 +59,12 @@
           </iframe></div>
         <br>
         <h2>1. Install MariaDB</h2>
-        <pre><code>$ sudo apt install mariadb-server mariadb-comm mycli python3-mysqldb -y</code></pre>
+        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install mariadb-server mariadb-comm mycli python3-mysqldb -y</code></pre>
+        <br>
         <h2>2. Setup intial mariadb configuration</h2>
+        <br>
         <h5>MariaDB Initial Setup</h5>
-<pre><code>$ sudo mysql_secure_installation
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mysql_secure_installation
 
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
       SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
@@ -124,24 +126,28 @@ installation should now be secure.
 
 Thanks for using MariaDB!</code></pre>
         <h5>MariaDB Server IP Change</h5>
-<pre><code>$ sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf.orig
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf.orig
 $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 </code></pre>
         Change Configuration
-<pre><code>bind-address            = 127.0.0.1
+<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>bind-address            = 127.0.0.1
 </code></pre>
         ==>
-<pre><code>bind-address            = 192.168.101.100
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>bind-address            = 192.168.101.100
 </code></pre>
+        <br>
         <h2>3. Generate Management Account</h3>
+        <br>
         <h5>MriadDB Login</h5>
-<pre><code>$ sudo mysql -u root -p</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mysql -u root -p</code></pre>
         <h5>Create MariaDB Account</h5>
-<pre><code>> create user 'test'@'%' identified by 'test@test';
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> create user 'test'@'%' identified by 'test@test';
 > grant all privileges on *.* to  'test'@'%' with grant option;
 > flush privileges;</code></pre>
+        <br>
         <h2>4. Verify MariaDB</h5>
-<pre><code>$ mycli -h 192.168.101.100 -u test</code></pre>
+        <br>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ mycli -h 192.168.101.100 -u test</code></pre>
 
       </div><!-- /.blog-post -->
 

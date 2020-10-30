@@ -88,11 +88,11 @@ password : 1234
 </pre>
       <hr>
       <h5>Change password of root</h5>
-<pre><code>New root password: ********
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>New root password: ********
 Repeat password: ********
 </code></pre>
       <h5>Create New Account</h5>
-<pre><code>Creating a new user account. Press  to abort
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>Creating a new user account. Press  to abort
 
 Please provide a username (eg. your forename) : test
 Create password:  **********
@@ -105,56 +105,56 @@ Please use this account for your daily work from now on.
       <br>
       <h5>2) Change Network IP</h5>
       <h5>Setup Main Ethernet Interface</h5>
-<pre><code>$ sudo nmcli con show
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nmcli con show
 $ sudo nmcli con add con-name "Main" ifname  enxc0742bfff848 type ethernet  ip4 192.168.101.5/24 gw4 192.168.101.1
 $ sudo nmcli con modify Main ipv4.dns 192.168.101.210,164.124.101.2
 $ sudo nmcli con modify Main ipv4.dns-search ysm.net
 $ sudo nmcli con modify Main ipv4.method manual
 </code></pre>
       <h5>Setup Sub Ethernet Interface</h5>
-<pre><code>$ sudo nmcli con add con-name "Sub" ifname  eth0 type ethernet  ip4 192.168.1.5/24
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nmcli con add con-name "Sub" ifname  eth0 type ethernet  ip4 192.168.1.5/24
 $ sudo nmcli con show
 </code></pre>
       <h5>Remove Ethernet Interface Old IP</h5>
-<pre><code>$ sudo nmcli con delete "Wired connection 2"
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nmcli con delete "Wired connection 2"
 $ sudo nmcli con delete "Wired connection 1"
 </code></pre>
       <h5>Connect to Main Interfacs New IP (192.168.101.5)</h5>
       <br>
       <h5>3) Change hostname & domainname</h5>
       <h5>Change Hostname</h5>
-<pre><code>$ sudo hostname
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo hostname
 $ sudo cp /etc/hostname /etc/hostname.orig
 $ sudo nano /etc/hostname
 </code></pre>
       <h10>Change Configuration</h10>
-<pre><code>orangepi-r1</code></pre>
+<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>orangepi-r1</code></pre>
       <h10>==></h10>
-<pre><code>new-sw</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>new-sw</code></pre>
       <h5>Change Hosts File</h5>
-<pre><code>$ sudo cp /etc/hosts /etc/hosts.orig
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/hosts /etc/hosts.orig
 $ sudo nano /etc/hosts</code></pre>
       <h10>Change Configuration</h10>
-<pre><code>127.0.0.1   localhost orangepi-r1
+<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>127.0.0.1   localhost orangepi-r1
 ::1         localhost orangepi-r1 ip6-localhost ip6-loopback</code></pre>
       <h10>==></h10>
-<pre><code>127.0.0.1   localhost net-sw net-sw.test.com
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>127.0.0.1   localhost net-sw net-sw.test.com
 ::1         localhost net-sw net-sw.tes.com ip6-localhost ip6-loopback</code></pre>
       <h5>Reset System</h5>
-<pre><code>$ sudo shutdown -r now</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo shutdown -r now</code></pre>
       <br>
       <h5>4) Upgrade all package</h5>
-<pre><code>$ sudo apt update ; sudo apt dist-upgrade -y ; sudo apt autoremove -y
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt update ; sudo apt dist-upgrade -y ; sudo apt autoremove -y
 $ sudo shutdown -r now</code></pre>
       <br>
       <h5>5) Setup IP Forwarding</h5>
-<pre><code>$ sudo cp /etc/sysctl.conf /etc/sysctl.conf.orig
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/sysctl.conf /etc/sysctl.conf.orig
 $ sudo nano /etc/sysctl.conf</code></pre>
       <h10>Change Configuration</h10>
-<pre><code>#net.ipv4.ip_forward=1</code></pre>
+<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>#net.ipv4.ip_forward=1</code></pre>
       <h10>==></h10>
-<pre><code>net.ipv4.ip_forward=1</code></pre>
-<pre><code>$ sudo sysctl -p /etc/sysctl.conf
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>net.ipv4.ip_forward=1</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo sysctl -p /etc/sysctl.conf
 $ sudo shutdown -r now
 </code></pre>
         <br>

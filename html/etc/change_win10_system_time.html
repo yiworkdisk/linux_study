@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<!-- saved from url=(0060)https://yiworkdisk.netlify.app/linux/install_armbian_r1.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>How to Install WordPress with Mairadb(or MySQL) on Ubuntu-20.04</title>
+    <title>How to Change System Time on Windows-10 from Local Time to UTC</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
@@ -40,30 +40,34 @@
   <div class="row">
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Linux Blog
+        Etc Blog
       </h3>
 
       <div class="blog-post">
-        <h2 class="blog-post-title">How to Upgrade MariaDB from Ubuntu-18.04 to Ubuntu-20.04</h2>
+        <h2 class="blog-post-title">How to Change System Time on Windows-10 from Local Time to UTC</h2>
         <p class="blog-post-meta">Beyond Here</a></p>
         <hr>
 <pre>
     Environment
-      u1804 : Ubuntu-18.04
-      u2004 : Ubuntu-20.04
+      OS : Windows 10
 </pre>
         <hr>
-        <p>If you convert MariaDB from Ubuntu-18.04 to Ubuntu-20.04, you can see error message</p>
-        <p>Row size too large (> 8126). Changing some columns to TEXT or BLOB or using ROW_FORMAT=DYNAMIC or ROW_FORMAT=COMPRESSED may help. 
-In current row format, BLOB prefix of 768 bytes is stored inline</p>
-        <div class="separator" style="clear: both; text-align: center;">
-          <iframe allowfullscreen="" class="BLOG_video_class" height="600" src="https://www.youtube.com/embed/p2I4K6JaQk4" width="720" youtube-src-id="p2I4K6JaQk4">
-          </iframe></div>
+         <p>If you use Ubuntu-20.04(18.04 or later)  & Windows10 Multi-booting, System Time is Missed.</p>
+         <p>Because System Time of Ubuntu-20.04(18.04 or later) is UTC but  System Time of Windows10 is Local Time.</p>
+         <p>It is solved by change System Time of Windows10 to UTC</p>
         <br>
-        <h2>1. Change Row type from Compact to Dynamic</h2>
-        <br>        <br>
-        <h2>2. convert MariaDB from Ubuntu-18.04 to Ubuntu-20.04</h2>
+        <h2>1. Execute Registry Editor</h2>
         <br>
+        <p>Press Win+R</p>
+        <p>Execute regedit</p>
+        <p>Browse</p>
+<pre>\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation
+
+New > DWORD (32bit) Value
+RealTimeIsUniversal
+Value data : 1</pre>      
+        <p>Reload System</p>
+
       </div><!-- /.blog-post -->
 
     </div><!-- /.blog-main -->
@@ -71,7 +75,7 @@ In current row format, BLOB prefix of 768 bytes is stored inline</p>
     <aside class="col-md-4 blog-sidebar">
       <div class="p-4 mb-3 bg-light rounded">
         <h4 class="font-italic">About</h4>
-        <p class="mb-0">Convert MariaDB from Ubuntu-18.04 to Ubuntu-20.04 By HeidiSQL</p>
+        <p class="mb-0">Change Win10 System Time to UTC</p>
       </div>
 
       <div class="p-4">
@@ -85,5 +89,6 @@ In current row format, BLOB prefix of 768 bytes is stored inline</p>
   </div><!-- /.row -->
 
 </main><!-- /.container -->
+
 </body>
 </html>

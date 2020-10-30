@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>How to Install NGINX on Ubuntu-20.04</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../css/blog.css" rel="stylesheet">
+  </head>
+  <body>
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        Linux Blog
+      </h3>
+
+      <div class="blog-post">
+        <h2 class="blog-post-title">How to Install NGINX on Ubuntu-20.04</h2>
+        <p class="blog-post-meta">Beyond Here</a></p>
+        <hr>
+<pre>
+    Environment
+      Device : Odroid-HC2
+      OS : Ubuntu-20.04
+      Host : test (192.168.101.100)
+</pre>
+
+        <hr>
+        <div class="separator" style="clear: both; text-align: center;">
+          <iframe allowfullscreen="" class="BLOG_video_class" height="600" src="https://www.youtube.com/embed/b3XSF8-7tzQ" width="720" youtube-src-id="b3XSF8-7tzQ">
+          </iframe></div>
+        <br>
+        <h2>1. Install NGINX </h2>
+        <br>
+        <h5>1) Install NGINX</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install nginx -y
+$ nginx -v</code></pre>
+        <p>Connect http://192.168.101.210</p>
+        <h5>2) Install PHP</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install php php-fpm php-mysql -y
+$ sudo apt remove apache2 --purge -y
+$ sudo rm -rf /etc/apache2
+$ sudo netstat -an | grep php</code></pre>
+        <h5>3) Setup NGIX For PHP</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.orig
+$ sudo rm /etc/nginx/sites-enabled/default
+$ sudo netstat -an | grep php</code></pre>
+        <p>check php socket<p>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/nginx/sites-available/default</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>server{
+
+        listen                  80;
+        server_name             test.local;
+       root /var/www/html;
+       index index.html index.htm index.php index.nginx-debian.html;
+       location / {
+               try_files $uri $uri/ =404;
+       }
+       location ~ \.php$ {
+              fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+              fastcgi_index index.php;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+              include fastcgi_params;
+       }
+}</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ cd /etc/nginx/sites-enabled/
+$ ls -l
+$ sudo -i
+# cd /etc/nginx/sites-enabled/
+# ln -s /etc/nginx/sites-available/default
+# ls -l
+# exit</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /var/www/html/phpinfo.php</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>&lt;?php
+  phpinfo();
+?></code></pre>
+        <p>Connect http://192.168.101.100/phpinfo.php</p>
+        <br>
+        <h2>2. Install  HTTPS service</h2>
+        <br>
+        <h5>1) Generate SSL Certification</h5>
+        <h5>Generate private key</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo openssl genrsa -des3 -out server.key 2048</code></pre>
+        <h5>Generate CSR(Certification sinning Request)</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo openssl req -new -days 365 -key server.key -out server.csr</code></pre>
+        <h5>Clear password of Private key </h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp server.key server.key.orig
+$ sudo openssl rsa -in server.key.orig -out server.key</code></pre>
+        <h5>Create Certification</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;">$ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt</code></pre>
+        <h5>Verify Certification</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;">$ ls -l server.*
+$ sudo cat server.key | head -3
+$ sudo cat server.crt | head -3</code></pre>
+        <h5>Copy Certification</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mkdir /etc/nginx/ssl
+$ sudo cp ~/server.* /etc/nginx/ssl/</code></pre>
+        <h5>2) Setup NGINX For HTTPS</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/nginx/sites-available/default</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>server{
+        listen                  443;
+        server_name             test.local;
+       root /var/www/html;
+       index index.html index.htm index.php index.nginx-debian.html;
+        ssl                     on;
+        ssl_certificate         /etc/nginx/ssl/server.crt;
+        ssl_certificate_key     /etc/nginx/ssl/server.key;
+        ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
+       location / {
+               try_files $uri $uri/ =404;
+       }
+       location ~ \.php$ {
+              fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+              fastcgi_index index.php;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+              include fastcgi_params;
+       }
+}</code></pre>
+        <p>Connect https://192.168.101.100</p>
+        <p>Connect https://192.168.101.100/phpinfo.php</p>
+
+      </div><!-- /.blog-post -->
+
+    </div><!-- /.blog-main -->
+
+    <aside class="col-md-4 blog-sidebar">
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">NGINX with HTTP&HTTPS&PHP installation on Ubuntu-20.04</p>
+      </div>
+
+      <div class="p-4">
+        <h4 class="font-italic">Elsewhere</h4>
+        <ol class="list-unstyled">
+          <li><a href="https://yism12.blogspot.com/">Google Blogger</a></li>
+        </ol>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
+
+</body>
+</html>
