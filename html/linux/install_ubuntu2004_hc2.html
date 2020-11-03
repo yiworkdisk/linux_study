@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>How To Install Ubuntu-20.04 on Odroid-HC2</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../css/blog.css" rel="stylesheet">
+  </head>
+  <body>
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        Linux Blog
+      </h3>
+
+      <div class="blog-post">
+        <h2 class="blog-post-title">How To Install Ubuntu-20.04 on Odroid-HC2</h2>
+        <p class="blog-post-meta">Beyond Here</a></p>
+        <hr>
+<pre>
+  Environment
+    Device : Odroid-HC2
+    OS : Ubuntu-20.04
+    Host : test (192.168.101.100)
+</pre>
+      <hr>
+
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              src="https://www.youtube.com/embed/AvcYB_TgdI0"
+              width="720"
+              youtube-src-id="AvcYB_TgdI0"
+            ></iframe>
+          </div>
+      <br>
+      <h2>1. Install Ubuntu-20.04 on Odroid-HC2</h2>
+      <br>
+      <h5>1) Download Ubuntu-20.04 Image from Hardkernel Website</h5>
+      <h5>2) Install  Ubuntu-20.04 with balenaEtcher on Micro SD</h5>
+      <h5>3) Install Micro SD On Odroid-HC2</h5>
+      <h5>4) Power on Odroid-HC2</h5>
+      <h5>5) Search IP with Angry IP Scanner on Odroid-HC2</h5>
+      <br>
+      <h2>2. Initial Setup on Odroid-HC2</h2>
+      <br>
+      <h5>1) Change default password</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ passwd
+$ sudo -i
+# passwd</code></pre>
+      <h5>2) Change Network IP</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nmcli con show
+$ sudo nmcli con add con-name "main" ifname  eth0 type ethernet  ip4 192.168.101.100/24 gw4 192.168.101.1
+$ sudo nmcli con show
+$ sudo nmcli conn delete 'Wired connection 1'</code></pre>
+      <p> Connect to New IP<p>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/NetworkManager/system-connections/main.nmconnection  /etc/NetworkManager/system-connections/main.nmconnection.orig
+$ sudo nano /etc/NetworkManager/system-connections/main.nmconnection</code></pre>
+      <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>dns=192.168.101.210;8.8.8.8;
+dns-search=ysm.net</code></pre>
+      <h5>3) Change hostname & domainname</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo hostname
+$ sudo hostname test
+$ sudo hostname
+$ sudo cp /etc/hostname /etc/hostname.orig
+$ sudo nano /etc/hostname</code></pre>
+      <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>odroid</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>test</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/hosts /etc/hosts.orig
+$ sudo nano /etc/hosts</code></pre>
+      <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>127.0.0.1     odroid</code></pre>
+      <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>127.0.0.1     test test.test.com</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>::1           localhost ip6-localhost ip6-loopback</code></pre>
+      <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>::1           test test.test.com localhost ip6-localhost ip6-loopback</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo shutdown -r now</code></pre>
+      <h5>4) Upgrade all package</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt update ; sudo apt dist-upgrade -y ; sudo apt autoremove -y</code></pre>
+      <h5>5) Install Bash autocompletion</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install bash-completion -y</code></pre>
+      <h5>6) Generate new Account</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo adduser test
+$ sudo cp /etc/group /etc/group.orig
+$ sudo nano /etc/group</code></pre>
+      <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>odroid</code></pre>
+      <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>odroid,test</code></pre>
+      <h5>7) Install additional utils</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install mc byobu vlc smplayer xrdp remmina</code></pre>
+      <h5>8) Install resolvconf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cat /etc/resolv.conf
+$ sudo apt install resolvconf
+$ sudo cp /etc/resolvconf/resolv.conf.d/head /etc/resolvconf/resolv.conf.d/head.orig
+$ sudo nano /etc/resolvconf/resolv.conf.d/head</code></pre>
+      <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>nameserver 192.168.101.210
+nameserver 164.124.101.2</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cat /etc/resolv.conf</code></pre>
+
+      </div><!-- /.blog-post -->
+
+    </div><!-- /.blog-main -->
+
+    <aside class="col-md-4 blog-sidebar">
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">Ubuntu-20.04 installation on Odroid-HC2</p>
+      </div>
+
+      <div class="p-4">
+        <h4 class="font-italic">Elsewhere</h4>
+        <ol class="list-unstyled">
+          <li><a href="https://yism12.blogspot.com/", target="_parent" , target="_parent">Google Blogger</a></li>
+        </ol>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
+
+</body>
+</html>
