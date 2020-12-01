@@ -9,92 +9,117 @@
 
 <url>
   <loc>https://yiworkdisk.netlify.app/</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/index.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/pages/blog.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/pages/none.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_ubuntu2004_hc2.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_armbian_r1.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_bind.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_nginx</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_xrdp.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_windows_fonts.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_ubuntu_server_wifi.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_ubuntu_server_ko.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_mariadb.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/upgrade_mariadb.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_postfix.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_wrodpress.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/linux/install_openvpn.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yiworkdisk.netlify.app/linux/install_conda_c2.html</loc>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yiworkdisk.netlify.app/linux/install_anaconda_ubuntu.html</loc>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yiworkdisk.netlify.app/linux/install_docker_hc2.html</loc>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yiworkdisk.netlify.app/linux/install_docker_c2.html</loc>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://yiworkdisk.netlify.app/linux/install_ubuntu_hdd_hc2.html</loc>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://yiworkdisk.netlify.app/etc/change_win10_system_time.html</loc>
-  <lastmod>2020-11-03T01:41:29+00:00</lastmod>
+  <lastmod>2020-12-01T15:46:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
