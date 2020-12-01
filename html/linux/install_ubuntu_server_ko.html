@@ -2,16 +2,17 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="Ubuntu Server - 20.04 한글 지원">
+    <meta name="keywords" content="ubuntu,server,ubuntu-server,20.04,한글,ko,fbterm, ibus">
+    <meta name="generator" content="YiSM html Generator">
     <title>Ubuntu-Server 20.04 한글지원 (fbterm, ibus)</title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
     <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -34,30 +35,50 @@
     <!-- Custom styles for this template -->
     <link href="../css/blog.css" rel="stylesheet">
   </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
   <body>
+    <main role="main" class="container">
+      <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+        <div class="col-md-8 blog-main">
+          <h3 class="pb-4 mb-4 font-italic border-bottom">
+            Linux Blog
+          </h3>
+          <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+            <h2 class="blog-post-title">Ubuntu-Server 20.04 한글지원 (fbterm, ibus)</h2>
+            <p class="blog-post-meta">Beyond Here</a></p>
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Linux Blog
-      </h3>
-
-      <div class="blog-post">
-        <h2 class="blog-post-title">Ubuntu-Server 20.04 한글지원 (fbterm, ibus)</h2>
-        <p class="blog-post-meta">Beyond Here</a></p>
-        <hr>
+<hr>
 <pre>
     Environment
       OS : Ubuntu-Sever 20.04
       Pre Installed Apps : IceWM
-</pre>
 
-        <hr>
-        <div class="separator" style="clear: both; text-align: center;">
-          <iframe allowfullscreen="" class="BLOG_video_class" height="600" src="https://www.youtube.com/embed/-KQ04vjvcKQ" width="720" youtube-src-id="-KQ04vjvcKQ">
-          </iframe></div>
+</pre>
+<hr>
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/-KQ04vjvcKQ"
+              width="720"
+              youtube-src-id="-KQ04vjvcKQ"
+            ></iframe>
+        </div>
         <br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
         <h2>1. 한글 설정</h2>
         <br>
         <h5>시간대 설정</h5>
@@ -81,8 +102,8 @@ $ locale</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/group /etc/group.orig
 $ sudo nano /etc/group</code></pre>
         Change Configuration
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>video:x:44:</code></pre>
-        <h5>==><h5></h5>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>video:x:44:</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>video:x:44:test</code></pre>
         <h5>FbTerm 실행</h5>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ fbterm</code></pre>
@@ -91,30 +112,33 @@ $ sudo nano /etc/group</code></pre>
         <br>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install ibus ibus-hangul -y</code></pre>
         ※ Ubuntu Server에 IceWM사용시 Fcitx을 설치하면 프로그램 충돌 발생
-        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>startx</code></pre>
-        <br>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>startx</code></pre>
+<!--------------------------------------------------->
+<!-- End od Blog Contents                           -->
+<!--------------------------------------------------->
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">Ubuntu Server - 20.04 한글 지원</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
+            </ol>
+            <ol class="list-unstyled">
+              <li><a href=#, target="_parent">This Blog Page</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+  </body>
 
-      </div><!-- /.blog-post -->
-
-    </div><!-- /.blog-main -->
-
-    <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">Ubuntu Server - 20.04 한글 지원</p>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
-        </ol>
-      </div>
-    </aside><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-</body>
-</html>
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->

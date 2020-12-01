@@ -1,17 +1,18 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="NGINX with HTTP&HTTPS&PHP installation on Ubuntu-20.04">
+    <meta name="keywords" content="ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,nginx,http,https,php">
+    <meta name="generator" content="YiSM html Generator">
     <title>How to Install NGINX on Ubuntu-20.04</title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
     <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -34,31 +35,51 @@
     <!-- Custom styles for this template -->
     <link href="../css/blog.css" rel="stylesheet">
   </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
   <body>
+    <main role="main" class="container">
+      <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+        <div class="col-md-8 blog-main">
+          <h3 class="pb-4 mb-4 font-italic border-bottom">
+            Linux Blog
+          </h3>
+          <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+            <h2 class="blog-post-title">How to Install NGINX on Ubuntu-20.04</h2>
+            <p class="blog-post-meta">Beyond Here</a></p>
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Linux Blog
-      </h3>
-
-      <div class="blog-post">
-        <h2 class="blog-post-title">How to Install NGINX on Ubuntu-20.04</h2>
-        <p class="blog-post-meta">Beyond Here</a></p>
-        <hr>
+<hr>
 <pre>
     Environment
       Device : Odroid-HC2
       OS : Ubuntu-20.04
       Host : test (192.168.101.100)
-</pre>
 
-        <hr>
-        <div class="separator" style="clear: both; text-align: center;">
-          <iframe allowfullscreen="" class="BLOG_video_class" height="600" src="https://www.youtube.com/embed/b3XSF8-7tzQ" width="720" youtube-src-id="b3XSF8-7tzQ">
-          </iframe></div>
+</pre>
+<hr>
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/b3XSF8-7tzQ"
+              width="720"
+              youtube-src-id="b3XSF8-7tzQ"
+            ></iframe>
+        </div>
         <br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
         <h2>1. Install NGINX </h2>
         <br>
         <h5>1) Install NGINX</h5>
@@ -72,9 +93,9 @@ $ sudo rm -rf /etc/apache2
 $ sudo netstat -an | grep php</code></pre>
         <h5>3) Setup NGIX For PHP</h5>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.orig
-$ sudo rm /etc/nginx/sites-enabled/default
-$ sudo netstat -an | grep php</code></pre>
+$ sudo rm /etc/nginx/sites-enabled/default</code></pre>
         <p>check php socket<p>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo netstat -an | grep php</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/nginx/sites-available/default</code></pre>
         <h10>Insert Configuration</h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>server{
@@ -118,9 +139,9 @@ $ sudo -i
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp server.key server.key.orig
 $ sudo openssl rsa -in server.key.orig -out server.key</code></pre>
         <h5>Create Certification</h5>
-<pre style="background-color: lightcyan; padding: 0.5rem;">$ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt</code></pre>
         <h5>Verify Certification</h5>
-<pre style="background-color: lightcyan; padding: 0.5rem;">$ ls -l server.*
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ ls -l server.*
 $ sudo cat server.key | head -3
 $ sudo cat server.crt | head -3</code></pre>
         <h5>Copy Certification</h5>
@@ -130,11 +151,10 @@ $ sudo cp ~/server.* /etc/nginx/ssl/</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/nginx/sites-available/default</code></pre>
         <h10>Insert Configuration</h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>server{
-        listen                  443;
+        listen                  443 ssl;
         server_name             test.local;
        root /var/www/html;
        index index.html index.htm index.php index.nginx-debian.html;
-        ssl                     on;
         ssl_certificate         /etc/nginx/ssl/server.crt;
         ssl_certificate_key     /etc/nginx/ssl/server.key;
         ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
@@ -149,29 +169,33 @@ $ sudo cp ~/server.* /etc/nginx/ssl/</code></pre>
        }
 }</code></pre>
         <p>Connect https://192.168.101.100</p>
-        <p>Connect https://192.168.101.100/phpinfo.php</p>
+<p>Connect https://192.168.101.100/phpinfo.php</p>
+<!--------------------------------------------------->
+<!-- End od Blog Contents                           -->
+<!--------------------------------------------------->
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">NGINX with HTTP&HTTPS&PHP installation on Ubuntu-20.04</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
+            </ol>
+            <ol class="list-unstyled">
+              <li><a href=#, target="_parent">This Blog Page</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+  </body>
 
-      </div><!-- /.blog-post -->
-
-    </div><!-- /.blog-main -->
-
-    <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">NGINX with HTTP&HTTPS&PHP installation on Ubuntu-20.04</p>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
-        </ol>
-      </div>
-    </aside><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-</body>
-</html>
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->

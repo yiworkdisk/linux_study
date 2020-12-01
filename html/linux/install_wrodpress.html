@@ -2,16 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="Web Service installation using WordPress">
+    <meta name="keywords" content="ubuntu,20.04,odroid,hc2,xu4,wordpress,mariadb,mysql,nginx">
+    <meta name="generator" content="YiSM html Generator">
     <title>How to Install WordPress with Mairadb(or MySQL) on Ubuntu-20.04</title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
     <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -34,19 +35,27 @@
     <!-- Custom styles for this template -->
     <link href="../css/blog.css" rel="stylesheet">
   </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
   <body>
+    <main role="main" class="container">
+      <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+        <div class="col-md-8 blog-main">
+          <h3 class="pb-4 mb-4 font-italic border-bottom">
+            Linux Blog
+          </h3>
+          <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+            <h2 class="blog-post-title">How to Install WordPress with Mairadb(or MySQL) on Ubuntu-20.04</h2>
+            <p class="blog-post-meta">Beyond Here</a></p>
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Linux Blog
-      </h3>
-
-      <div class="blog-post">
-        <h2 class="blog-post-title">How to Install WordPress with Mairadb(or MySQL) on Ubuntu-20.04</h2>
-        <p class="blog-post-meta">Beyond Here</a></p>
-      <hr>
+<hr>
 <pre>
     Environment
       Device :  Odroid-HC2
@@ -54,29 +63,41 @@
       HostName : test
       IP : 192.168.101.100
       Pre Insall App : Mairadb(or MySQL), NGINX, PHP
-</pre>
 
-        <hr>
-        <div class="separator" style="clear: both; text-align: center;">
-          <iframe allowfullscreen="" class="BLOG_video_class" height="600" src="https://www.youtube.com/embed/ydPfmXagGVM" width="720" youtube-src-id="ydPfmXagGVM">
-          </iframe></div>
+</pre>
+<hr>
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/ydPfmXagGVM"
+              width="720"
+              youtube-src-id="ydPfmXagGVM"
+            ></iframe>
+        </div>
         <br>
-        <h2>1. Install wordpress</h2>
-        <br>
-        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-net-ldap2 php-net-ldap3 php-net-idna2 -y
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
+         <h2>1. Install wordpress</h2>
+         <br>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-net-ldap2 php-net-ldap3 php-net-idna2 -y
 $ wget https://wordpress.org/latest.zip
 $ unzip latest.zip</code></pre>
-        <br>
-        <h2>2. Generate database for wordpress</h3>
-        <br>
-<hr>
+         <br>
+         <h2>2. Generate database for wordpress</h3>
+         <br>
+         <hr>
 <pre>WordPress
    SQL database : wordpress
    SQL userid : wordpress
    SQL password : test@test</pre>
-<hr>
-<p>※ Change it to suit your environment</p>
-        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mysql -u root
+         <hr>
+         <p>※ Change it to suit your environment</p>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mysql -u root
 > create database wordpress;
 > grant all on wordpress.* to wordpress@localhost identified by 'test@test';
 > flush privileges;
@@ -84,7 +105,7 @@ $ unzip latest.zip</code></pre>
         <br>
         <h2>3. Copy WordPress</h3>
         <br>
-        <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp -R wordpress /var/www/html/wp
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp -R wordpress /var/www/html/wp
 $ sudo chown  -R www-data:www-data /var/www/html/wp
 $ sudo ls /var/www/html/ -l</code></pre>
         <br>
@@ -97,35 +118,39 @@ $ sudo ls /var/www/html/ -l</code></pre>
   SQL password : test@test
 </pre>
 <hr>
-<p>※ Change it to suit your environment</p>
+        <p>※ Change it to suit your environment</p>
         <h5>Connet to WordPress Web (http://192.168.101.100/wp)</h5>
         <h5>Select your Language</h5>
         <h5>Insert your Database Information</h5>
         <h5>Insert your WordPress Infomation</h5>
         <h5>Login your Account</h5>
-        <h5>Change your Theme</h5>
+<h5>Change your Theme</h5>
+<!--------------------------------------------------->
+<!-- End od Blog Contents                           -->
+<!--------------------------------------------------->
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">Web Service installation using WordPress</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
+            </ol>
+            <ol class="list-unstyled">
+              <li><a href=#, target="_parent">This Blog Page</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+  </body>
 
-      </div><!-- /.blog-post -->
-
-    </div><!-- /.blog-main -->
-
-    <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">Web Service installation using WordPress</p>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
-        </ol>
-      </div>
-    </aside><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-</body>
-</html>
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->

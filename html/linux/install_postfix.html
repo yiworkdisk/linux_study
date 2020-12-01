@@ -2,16 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="Mail Service Installation using Posfix & Dovecot on Ubuntu-20.04">
+    <meta name="keywords" content="ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,postfix,dovecot,mariadb,mysql">
+    <meta name="generator" content="YiSM html Generator">
     <title>How to Install Postfix & Dovecot with MariaDB(or MySQL) on Ubuntu-20.04</title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
     <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -34,51 +35,67 @@
     <!-- Custom styles for this template -->
     <link href="../css/blog.css" rel="stylesheet">
   </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
   <body>
+    <main role="main" class="container">
+      <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+        <div class="col-md-8 blog-main">
+          <h3 class="pb-4 mb-4 font-italic border-bottom">
+            Linux Blog
+          </h3>
+          <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+            <h2 class="blog-post-title">How to Install Postfix & Dovecot with MariaDB(or MySQL) on Ubuntu-20.04</h2>
+            <p class="blog-post-meta">Beyond Here</a></p>
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Linux Blog
-      </h3>
-
-      <div class="blog-post">
-        <h2 class="blog-post-title">How to Install Postfix & Dovecot with MariaDB(or MySQL) on Ubuntu-20.04</h2>
-        <p class="blog-post-meta">Beyond Here</a></p>
-        <hr>
+<hr>
 <pre>
     Environment
       Device :  Odroid-HC2
       OS : Ubuntu-20.04
       Pre Insalled App : MariaDB(or MySQL)
-</pre>
 
-        <hr>
-        <div class="separator" style="clear: both; text-align: center;">
-          <iframe allowfullscreen="" class="BLOG_video_class" height="600" src="https://www.youtube.com/embed/6gNYcdpKy2M" width="720" youtube-src-id="6gNYcdpKy2M">
-          </iframe></div>
+</pre>
+<hr>
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/UXVmEPiLXPA"
+              width="720"
+              youtube-src-id="UXVmEPiLXPA"
+            ></iframe>
+        </div>
         <br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
         <h2>1. Install Postfix & Dovecot</h2>
-        <br>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt-get install postfix postfix-mysql dovecot-core dovecot-imapd dovecot-lmtpd  dovecot-pop3d dovecot-mysql
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt-get install postfix postfix-mysql dovecot-core dovecot-imapd dovecot-lmtpd  dovecot-pop3d dovecot-mysql
 $ sudo systemctl restart dovecot
 $ sudo netstat -lnp</code></pre>
-        <br>
         <h2>2. Setup mariadb</h2>
-        <br>
         <hr>
 <pre>
     Environment
     database :  mail_server
     accout : usermail
     password : test@test
-    host : localhost 
+    host : localhost
 </pre>
-
         <hr>
-
         <h5>1) Generate Database for mail</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mysql -u root -p</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>> create database mail_server;</code></pre>
         <h5>2) Generate Acccout for mail</h5>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>> GRANT SELECT ON mail_server.* TO 'usermail'@'127.0.0.1' IDENTIFIED BY 'test@test';
@@ -145,10 +162,10 @@ VALUES
         <h2>3. Setup Postfix</h2>
         <br>
         <h5>1) Setup main.cf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.original
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.original
 $ sudo nano /etc/postfix/main.cf</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code># TLS parameters
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code># TLS parameters
 smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
 smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 smtpd_tls_security_level=may</code></pre>
@@ -158,7 +175,7 @@ smtpd_use_tls = yes
 smtpd_tls_cert_file=/etc/dovecot/private/dovecot.pem
 smtpd_tls_key_file=/etc/dovecot/private/dovecot.key
 smtpd_tls_security_level=may</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>smtp_tls_CApath=/etc/ssl/certs
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_security_level=may
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scach</code></pre>
         <h10>==></h10>
@@ -166,13 +183,13 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scach</code></pre
 #smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_security_level=may
 #smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination</code></pre>
         <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>smtpd_sasl_type = dovecot
 smtpd_sasl_path = private/auth
 smtpd_sasl_auth_enable = yes
 smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated,  reject_unauth_destination</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>mydestination = $myhostname, test.com, ubt64.test.com, localhost.test.com, localhost</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mydestination = $myhostname, test.com, ubt64.test.com, localhost.test.com, localhost</code></pre>
         <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>mydestination = localhost</code></pre>
         <h10>Insert Configuration</h10>
@@ -183,8 +200,9 @@ virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
 virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
 virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
         <h5>2) Generate mysql-virtual-mailbox-domains.cf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
 password = test@test
 hosts = 127.0.0.1
 dbname = mail_server
@@ -192,37 +210,29 @@ query = SELECT 1 FROM virtual_domains WHERE name='%s'</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
 $ sudo postmap -q test.com mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
         <h5>3) Generate mysql-virtual-mailbox-domains.cf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
 password = test@test
 hosts = 127.0.0.1
 dbname = mail_server
 query = SELECT 1 FROM virtual_domains WHERE name='%s'</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
 $ sudo postmap -q test.com mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
-        <h5>4) Generate mysql-virtual-mailbox-maps.cf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-mailbox-maps.cf</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
-password = test@test
-hosts = 127.0.0.1
-dbname = mail_server
-query = SELECT 1 FROM virtual_users WHERE email='%s'</code></pre>
-<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
-$ sudo postmap -q test@test.com mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf</code></pre>
-        <h5>5) Generate mysql-virtual-alias-maps.cf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
+        <h5>4) Generate mysql-virtual-alias-maps.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
 password = test@test
 hosts = 127.0.0.1
 dbname = mail_server
 query = SELECT destination FROM virtual_aliases WHERE source='%s'</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
 $ sudo postmap -q admin@test.com mysql:/etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
-        <h5>6) Setup master.cf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/postfix/master.cf /etc/postfix/master.cf.orig
+        <h5>5) Setup master.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/postfix/master.cf /etc/postfix/master.cf.orig
 $ sudo nano /etc/postfix/master.cf</code></pre>
-        Change Configuration
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>#submission inet n       -       y       -       -       smtpd
+        <h10>Change Configuration<h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#submission inet n       -       y       -       -       smtpd
 #  -o syslog_name=postfix/submission
 #  -o smtpd_tls_security_level=encrypt
 #  -o smtpd_sasl_auth_enable=yes
@@ -230,8 +240,8 @@ $ sudo nano /etc/postfix/master.cf</code></pre>
 #  -o smtpd_reject_unlisted_recipient=no
 #  -o smtpd_client_restrictions=$mua_client_restrictions
 #  -o smtpd_helo_restrictions=$mua_helo_restrictions</code></pre>
-=>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>submission inet n       -       y       -       -       smtpd
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>submission inet n       -       y       -       -       smtpd
   -o syslog_name=postfix/submission
   -o smtpd_tls_security_level=encrypt
   -o smtpd_sasl_auth_enable=yes
@@ -239,7 +249,7 @@ $ sudo nano /etc/postfix/master.cf</code></pre>
 #  -o smtpd_reject_unlisted_recipient=no
   -o smtpd_client_restrictions=permit_sasl_authenticated,reject
 #  -o smtpd_helo_restrictions=$mua_helo_restrictions</code></pre>
-<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo systemctl restart postfix
 $ sudo netstat -lnp
 check port 25 & 587</code></pre>
         <br>
@@ -252,47 +262,48 @@ $ sudo cp /etc/dovecot/conf.d/10-auth.conf /etc/dovecot/conf.d/10-auth.conf.orig
 $ sudo cp /etc/dovecot/dovecot-sql.conf.ext /etc/dovecot/dovecot-sql.conf.ext.orig
 $ sudo cp /etc/dovecot/conf.d/10-master.conf /etc/dovecot/conf.d/10-master.conf.orig
 $ sudo cp /etc/dovecot/conf.d/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf.orig</code></pre>
-        <h5>2) Setup 10-master.conf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/dovecot.conf</code></pre>
+        <h5>2) Setup dovecot.conf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/dovecot.conf</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>!include_try /usr/share/dovecot/protocols.d/*.protocol</code></pre>
-        <h10>=></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>!include_try /usr/share/dovecot/protocols.d/*.protocol</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>!include_try /usr/share/dovecot/protocols.d/*.protocol
 protocols = imap pop3 lmtp</code></pre>
         <h5>3) Setup 10-mail.conf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-mail.conf</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>mail_location = mbox:~/mail:INBOX=/var/mail/%ul</code></pre>
-        <h10>=></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mail_location = mbox:~/mail:INBOX=/var/mail/%ul</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>#mail_location = mbox:~/mail:INBOX=/var/mail/%u
 mail_location = maildir:/var/mail/vhosts/%d/%nl</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>mail_privileged_group = maill</code></pre>
-=>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mail_privileged_group = mail</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>mail_privileged_group = mail</code></pre>
         <h5>4) Generate domain per Virtual Host</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo ls -ld /var/mail
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo ls -ld /var/mail
 $ sudo mkdir -p /var/mail/vhosts/test.com</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo groupadd -g 5000 vmail
 $ sudo useradd -g vmail -u 5000 vmail -d /var/mail
 $ sudo chown -R vmail:vmail /var/mail</code></pre>
         <h5>5) Setup 10-auth.conf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-auth.conf</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-auth.conf</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>#disable_plaintext_auth = yes</code></pre>
-        <h10>=></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#disable_plaintext_auth = yes</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>disable_plaintext_auth = yes</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>auth_mechanisms = plain</code></pre>
-        <h10>=></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>auth_mechanisms = plain</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>auth_mechanisms = plain login</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>!include auth-system.conf.ext
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>!include auth-system.conf.ext
 #!include auth-sql.conf.ext</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>#!include auth-system.conf.ext
 !include auth-sql.conf.ext</code></pre>
         <h5>6) Setup auth-sql.conf.ext</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/dovecot/conf.d/auth-sql.conf.ext /etc/dovecot/conf.d/auth-sql.conf.ext.orig
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/dovecot/conf.d/auth-sql.conf.ext /etc/dovecot/conf.d/auth-sql.conf.ext.orig
 $ sudo nano /etc/dovecot/conf.d/auth-sql.conf.ext</pre></code>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>passdb {
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>passdb {
   driver = sql
   # Path for SQL configuration file, see example-config/dovecot-sql.conf.ext
   args = /etc/dovecot/dovecot-sql.conf.ext
@@ -301,7 +312,7 @@ userdb {
   driver = sql
   args = /etc/dovecot/dovecot-sql.conf.ext
 }</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>passdb {
   driver = sql
   # Path for SQL configuration file, see example-config/dovecot-sql.conf.ext
@@ -312,23 +323,23 @@ userdb {
   args = uid=vmail gid=vmail home=/var/mail/vhosts/%d/%n
 } </code></pre>
         <h5>7) Setup dovecot-sql.conf.ext</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/dovecot-sql.conf.ext</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/dovecot-sql.conf.ext</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code># Database driver: mysql, pgsql, sqlite
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code># Database driver: mysql, pgsql, sqlite
 #driver =</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code># Database driver: mysql, pgsql, sqlite
 driver = mysql</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>#connect</code></pre>
-        <h10>=></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#connect</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>connect = host=127.0.0.1 dbname=mail_server user=usermail password=test@test</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>#default_pass_scheme = MD5</code></pre>
-        <h10>=></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#default_pass_scheme = MD5</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>default_pass_scheme = SHA512-CRYPT</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>#password_query = \
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#password_query = \
 #  SELECT username, domain, password \
 #  FROM users WHERE username = '%n' AND domain = '%d'</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>password_query = \
   SELECT email as user, password \
   FROM virtual_users WHERE email='%u'; </code></pre>
@@ -336,10 +347,9 @@ driver = mysql</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo chown -R vmail:dovecot /etc/dovecot
 $ sudo chmod -R 771 /etc/dovecot </code></pre>
         <h5>9) Setup 10-master.conf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo -i
-# nano /etc/dovecot/conf.d/10-master.conf</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-master.conf</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>service imap-login {
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service imap-login {
   inet_listener imap {
     #port = 143
   }
@@ -348,7 +358,7 @@ $ sudo chmod -R 771 /etc/dovecot </code></pre>
     #ssl = yes
   }
 }</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>service imap-login {
   inet_listener imap {
     port = 143
@@ -358,7 +368,7 @@ $ sudo chmod -R 771 /etc/dovecot </code></pre>
     ssl = yes
   }
 }</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>service pop3-login {
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service pop3-login {
   inet_listener pop3 {
     #port = 110
   }
@@ -367,7 +377,7 @@ $ sudo chmod -R 771 /etc/dovecot </code></pre>
     #ssl = yes
   }
 }</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>service pop3-login {
   inet_listener pop3 {
     port = 110
@@ -377,11 +387,11 @@ $ sudo chmod -R 771 /etc/dovecot </code></pre>
     ssl = yes
   }
 }</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>service lmtp {
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service lmtp {
   unix_listener lmtp {
     #mode = 0666
   }</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>service lmtp {
    unix_listener /var/spool/postfix/private/dovecot-lmtp {
     mode = 0600
@@ -389,44 +399,44 @@ $ sudo chmod -R 771 /etc/dovecot </code></pre>
     group = postfix
   }</code></pre>
         <h10>Change service auth parameter</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>  unix_listener auth-userdb {
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>  unix_listener auth-userdb {
     #mode = 0666
     #user =
     #group =
   }</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>  unix_listener auth-userdb {
     mode = 0600
     user = vmail
     #group =
   }</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>  # Postfix smtp-auth
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>  # Postfix smtp-auth
   #unix_listener /var/spool/postfix/private/auth {
   #  mode = 0666
   #}</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>  # Postfix smtp-auth
   unix_listener /var/spool/postfix/private/auth {
     mode = 0666
     user = postfix
     group = postfix
   }</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>  # Auth process is run as this user.
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>  # Auth process is run as this user.
   #user = $default_internal_user
 }</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>  # Auth process is run as this user.
   #user = $default_internal_user
   user = dovecot
 }</code></pre>
         <h10>Change service auth-worker parametet</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>service auth-worker {
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service auth-worker {
   # Auth worker process is run as root by default, so that it can access
   # /etc/shadow. If this isn't necessary, the user should be changed to
   # $default_internal_user.
   #user = root
 }</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>service auth-worker {
   # Auth worker process is run as root by default, so that it can access
   # /etc/shadow. If this isn't necessary, the user should be changed to
@@ -434,38 +444,43 @@ $ sudo chmod -R 771 /etc/dovecot </code></pre>
   user = vmail
 }</code></pre>
         <h5>10) Setup 10-ssl.conf</h5>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-ssl.conf</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-ssl.conf</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>ssl = yes</code></pre>
-        <h10>=></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>ssl = yes</code></pre>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>ssl = required</code></pre>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>ssl_cert = &lt;/etc/dovecot/private/dovecot.pem
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>ssl_cert = &lt;/etc/dovecot/private/dovecot.pem
 ssl_key = &lt;/etc/dovecot/private/dovecot.key</code></pre>
-        <h10>=></h10>
+        <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>ssl_cert = &lt;/etc/dovecot/private/dovecot.pem
 ssl_key = &lt;/etc/dovecot/private/dovecot.key</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo systemctl restart dovecot</code></pre>
+<!--------------------------------------------------->
+<!-- End od Blog Contents                           -->
+<!--------------------------------------------------->
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">Mail Service Installation using Posfix & Dovecot on Ubuntu-20.04</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
+            </ol>
+            <ol class="list-unstyled">
+              <li><a href=#, target="_parent">This Blog Page</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+  </body>
 
-      </div><!-- /.blog-post -->
-
-    </div><!-- /.blog-main -->
-
-    <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">Mail Service Installation using Posfix & Dovecot on Ubuntu-20.04</p>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
-        </ol>
-      </div>
-    </aside><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-</body>
-</html>
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->

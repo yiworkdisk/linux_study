@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="LXD & LXC installation on Odroid-HC2(or ARM)">
+    <meta name="keywords" content="ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,lxd,lxc">
+    <meta name="generator" content="YiSM html Generator">
+    <title>How To Install LXD & LXC on Odroid-HC2(or ARM)</title>
+
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../css/blog.css" rel="stylesheet">
+  </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+  <body>
+    <main role="main" class="container">
+      <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+        <div class="col-md-8 blog-main">
+          <h3 class="pb-4 mb-4 font-italic border-bottom">
+            Linux Blog
+          </h3>
+          <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+            <h2 class="blog-post-title">How To Install LXD & LXC on Odroid-HC2(or ARM)</h2>
+            <p class="blog-post-meta">Beyond Here</a></p>
+
+<hr>
+<pre>
+  Environment
+    Device : Odroid-HC2
+    OS : Ubuntu-20.04
+
+</pre>
+<hr>
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/q7zRgojTZag"
+              width="720"
+              youtube-src-id="q7zRgojTZag"
+            ></iframe>
+        </div>
+        <br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
+      <h2>1. Install LXD & LXC on Odroid-HC2</h2>
+      <br>
+      <h5>1) Install LXD & LXC on Odroid-HC2</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install lxc lxd lxd-client -y</code></pre>
+      <h5>2) ADD LXD Group</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo usermod -aG lxd $USER</code></pre>
+      <h5>3) Generate LXD Initial Settiing</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo lxd init
+Would you like to use LXD clustering? (yes/no) [default=no]:
+Do you want to configure a new storage pool? (yes/no) [default=yes]:
+Name of the new storage pool [default=default]: Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:
+Create a new ZFS pool? (yes/no) [default=yes]:
+Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:
+Size in GB of the new loop device (1GB minimum) [default=5GB]:
+Would you like to connect to a MAAS server? (yes/no) [default=no]:
+Would you like to create a new local network bridge? (yes/no) [default=yes]:
+What should the new bridge be called? [default=lxdbr0]:
+What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+Would you like LXD to be available over the network? (yes/no) [default=no]:
+Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
+</code></pre>
+      <h2>2. Management LXC & LXD</h2>
+      <h5>1)Search LXC Images</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc image list imageserver:imagename</code></pre>
+      <h10>Example</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc image list images:centos
+$ lxc image list ubuntu:20.04
+$ lxc image list ubuntu:</code></pre>
+      <h5>2) Check LXC Image Infomation</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc launch imageserver:imagename instancename</code></pre>
+      <h10>Example</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc image info images:centos/7/armhf
+$ lxc image info images:centos/8/arm64
+$ lxc image info ubuntu:20.04/arm64</code></pre>
+      <h5>3) Install LXC Image</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc launch imageserver:imagename instancename</code></pre>
+      <h10>Example</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc launch ubuntu:20.04/arm64 u2004
+$ lxc launch images:centos/8/arm64 cen8</code></pre>
+      <h5>4) Excute bash of LXC Image</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc exec instancename -- /bin/bash</code></pre>
+      <h10>Example</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc exec u2004 -- /bin/bash</code></pre>
+      <h5>5) List of Container on Local System</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc list</code></pre>
+      <h5>6) Infomation of Container on Local System</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc list u2004</code></pre>
+      <h5>7) Start Container on Local System</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc start instancename</code></pre>
+      <h10>Example</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc start u2004</code></pre>
+      <h5>8) Stop Container on Local System</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc stop instancename</code></pre>
+      <h10>Example</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc stop u2004</code></pre>
+      <h5>9) Delete Container on Local System</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc delete instancename</code></pre>
+      <h10>Example</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ lxc delete u2004</code></pre>
+<!--------------------------------------------------->
+<!-- End od Blog Contents                           -->
+<!--------------------------------------------------->
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">LXD & LXC installation on Odroid-HC2(or ARM)</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
+            </ol>
+            <ol class="list-unstyled">
+              <li><a href=#, target="_parent">This Blog Page</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+  </body>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->

@@ -2,16 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="VPN Service Installation by OpenVPN on Ubuntu-20.04">
+    <meta name="keywords" content="ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,openvpn,vpn">
+    <meta name="generator" content="YiSM html Generator">
     <title>How to Install OpenVPN on Ubuntu-20.04</title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
     <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -34,27 +35,51 @@
     <!-- Custom styles for this template -->
     <link href="../css/blog.css" rel="stylesheet">
   </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
   <body>
+    <main role="main" class="container">
+      <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+        <div class="col-md-8 blog-main">
+          <h3 class="pb-4 mb-4 font-italic border-bottom">
+            Linux Blog
+          </h3>
+          <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+            <h2 class="blog-post-title">How to Install OpenVPN on Ubuntu-20.04</h2>
+            <p class="blog-post-meta">Beyond Here</a></p>
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Linux Blog
-      </h3>
-
-      <div class="blog-post">
-        <h2 class="blog-post-title">How to Install OpenVPN on Ubuntu-20.04</h2>
-        <p class="blog-post-meta">Beyond Here</a></p>
-        <hr>
+<hr>
 <pre>
     Environment
       Device : Odroid-HC2
       OS : Ubuntu-20.04
       Host : test(192.168.101.100/24)
       VPN Network : 10.8.0.0/24
+
 </pre>
-        <hr>
+<hr>
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/xuygSHpJ1Io"
+              width="720"
+              youtube-src-id="xuygSHpJ1Io"
+            ></iframe>
+        </div>
+        <br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
 
         <hr>
 <pre>
@@ -73,9 +98,6 @@
       test-2.ovpn : OpenVPN Client-2 Configuration File
 </pre>
         <hr>
-        <div class="separator" style="clear: both; text-align: center;">
-          <iframe allowfullscreen="" class="BLOG_video_class" height="600" src="https://www.youtube.com/embed/xuygSHpJ1Io" width="720" youtube-src-id="xuygSHpJ1Io">
-          </iframe></div>
         <br>
         <h2>1. Create vpn account</h2>
         <br>
@@ -86,7 +108,7 @@ $ cd ~</code></pre>
         <br>
         <h2>2. Install Openvpn</h2>
         <br>
-<pre style="margin-bottom: 0;background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install openvpn easy-rsa -y</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install openvpn easy-rsa -y</code></pre>
         <b2>3. Generate of the CA(Certificate Authority)</b2>
         <br>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ ls
@@ -96,14 +118,14 @@ $ cd easy-rsa
 $ cp vars vars.orig
 $ nano vars</code></pre>
         <h10>Chanage Connfiguration</h10>
-<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0"><code>#set_var EASYRSA_REQ_COUNTRY    "US"
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#set_var EASYRSA_REQ_COUNTRY    "US"
 #set_var EASYRSA_REQ_PROVINCE   "California"
 #set_var EASYRSA_REQ_CITY       "San Francisco"
 #set_var EASYRSA_REQ_ORG        "Copyleft Certificate Co"
 #set_var EASYRSA_REQ_EMAIL      "me@example.net"
 #set_var EASYRSA_REQ_OU         "My Organizational Unit</code></pre>
         <h10>==></h10>
-<pre style="background-color: lightcyan; padding: 0.5rem;">set_var EASYRSA_REQ_COUNTRY    "US"
+<pre>set_var EASYRSA_REQ_COUNTRY    "US"
 set_var EASYRSA_REQ_PROVINCE   "NY"
 set_var EASYRSA_REQ_CITY       "NY"
 set_var EASYRSA_REQ_ORG        "TEST"
@@ -121,7 +143,7 @@ $ cp ./pki/private/test.key ./pki/issued/test.crt ~/</code></pre>
         <br>
         <h2>5. Generate the DH(Diffie-Hellman) parameters</h2>
         <br>
-<pre style="background-color: lightcyan; padding: 0.5rem;">$ ./easyrsa gen-dh
+<pre>$ ./easyrsa gen-dh
 $ cp ./pki/dh.pem ~/dh2048.pem<code></code></pre>
         <br>
         <h2>6. Generate the tls-auth key (ta.key)</h2>
@@ -177,11 +199,11 @@ push "dhcp-option DNS 8.8.8.8"</code></pre>
         <h2>9. Generate the Client key and certificate request</h2>
         <br>
         <h5>Generate the Client-1 key and certificate request</h5>
-<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>$ ./easyrsa gen-req test-1 nopass
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ ./easyrsa gen-req test-1 nopass
 $ ./easyrsa sign-req client test-1
 $ cp ./pki/issued/test-1.crt pki/private/test-1.key ~/</code></pre>
         <h5>Generate the Client-2 key and certificate request</h5>
-<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>$ ./easyrsa gen-req test-2 nopass
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ ./easyrsa gen-req test-2 nopass
 $ ./easyrsa sign-req client test-2
 $ cp ./pki/issued/test-2.crt pki/private/test-2.key ~/</code></pre>
         <br>
@@ -242,29 +264,33 @@ $ sudo journalctl -u openvpn@test -xe</code></pre>
         <br>
         <h5>Setup Sever Netawork GW</h5>
         <h5>Copy File to Client</h5>
-        <h5>Install OpenVPN App on Client</h5>
+<h5>Install OpenVPN App on Client</h5>
+<!--------------------------------------------------->
+<!-- End od Blog Contents                           -->
+<!--------------------------------------------------->
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">VPN Service Installation by OpenVPN on Ubuntu-20.04</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
+            </ol>
+            <ol class="list-unstyled">
+              <li><a href=#, target="_parent">This Blog Page</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+  </body>
 
-      </div><!-- /.blog-post -->
-
-    </div><!-- /.blog-main -->
-
-    <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">VPN Service Installation by OpenVPN on Ubuntu-20.04</p>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
-        </ol>
-      </div>
-    </aside><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-</body>
-</html>
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->

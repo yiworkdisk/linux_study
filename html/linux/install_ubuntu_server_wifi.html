@@ -2,16 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="WiFi Installation on Ubuntu-Server 20.04">
+    <meta name="keywords" content="ubuntu,server,ubuntu-server,20.04,wifi">
+    <meta name="generator" content="YiSM html Generator">
     <title>How to Install WiFi on Ubuntu-Server 20.04</title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
     <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -34,21 +35,29 @@
     <!-- Custom styles for this template -->
     <link href="../css/blog.css" rel="stylesheet">
   </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
   <body>
+    <main role="main" class="container">
+      <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+        <div class="col-md-8 blog-main">
+          <h3 class="pb-4 mb-4 font-italic border-bottom">
+            Linux Blog
+          </h3>
+          <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+            <h2 class="blog-post-title">How to Install WiFi on Ubuntu-Server 20.04</h2>
+            <p class="blog-post-meta">Beyond Here</a></p>
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Linux Blog
-      </h3>
-
-      <div class="blog-post">
-        <h2 class="blog-post-title">How to Install WiFi on Ubuntu-Server 20.04</h2>
-        <p class="blog-post-meta">Beyond Here</a></p>
-        <hr>
+<hr>
 <pre>
-    Environment 
+    Environment
       Device : ONDA V80Plus
         CPU: Intel Z3800
         RAM : 2G
@@ -58,11 +67,13 @@
       AP
         SSID : test
         PW : testtest
-</pre>
 
-        <hr>
-        <br>
-        <h2>1. 한글 설정</h2>
+</pre>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
         <h2>1. Install WPA</h2>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt install wpasupplicant -y</code></pre>
         <br>
@@ -71,14 +82,14 @@
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /usr/share/doc/netplan/examples/wireless.yaml /etc/netplan/99_config.yaml
 $ sudo nano /etc/netplan/99_config.yaml</code></pre>
         <h10>Change Configuration</h10>
-<pre style="margin-bottom: 0; background-color: lightcyan; padding: 0.5rem;"><code>network:
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>network:
   version: 2
   renderer: networkd
   wifis:
     wlp2s0b1:
       dhcp4: no
       dhcp6: no
-      addresses: [192.168.0.21/24]
+      addresses: [192.168.0.99/24]
       gateway4: 192.168.0.1
       nameservers:
         addresses: [192.168.0.1, 8.8.8.8]
@@ -100,30 +111,33 @@ $ sudo nano /etc/netplan/99_config.yaml</code></pre>
       access-points:
         "test":
           password: "testtest"</code></pre>
-
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo netplan apply</code></pre>
+<!--------------------------------------------------->
+<!-- End od Blog Contents                           -->
+<!--------------------------------------------------->
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">WiFi Installation on Ubuntu-Server 20.04</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
+            </ol>
+            <ol class="list-unstyled">
+              <li><a href=#, target="_parent">This Blog Page</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+  </body>
 
-      </div><!-- /.blog-post -->
-
-    </div><!-- /.blog-main -->
-
-    <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">How to Install WiFi on Ubuntu-Server 20.04</p>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
-        </ol>
-      </div>
-    </aside><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-</body>
-</html>
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
