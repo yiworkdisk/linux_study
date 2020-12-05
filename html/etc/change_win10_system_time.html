@@ -1,17 +1,18 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="Change Win10 System Time to UTC">
+    <meta name="keywords" content="win10,windows10,system,time,local,utc,multibooting">
+    <meta name="generator" content="YiSM html Generator">
     <title>How to Change System Time on Windows-10 from Local Time to UTC</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <link rel="canonical" href="../css/">
 
     <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -34,24 +35,139 @@
     <!-- Custom styles for this template -->
     <link href="../css/blog.css" rel="stylesheet">
   </head>
-  <body>
 
-<main role="main" class="container">
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   <body>
+<!--------------------------------------------------->
+<!--  Header                                       -->
+<!--------------------------------------------------->
+   <div id = 'header'>
+<!--------------------------------------------------->
+<!--  NavBar - Top -01                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark" style = "background-color: black;">
+      <a class="navbar-brand">Beyond Here</a>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../index.html">Home</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/blog.html">Blog</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/about.html">About</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3 col-6">
+          <li class="nav-item text-nowrap">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+</nav>
+<!--------------------------------------------------->
+<!--  NavBar - Top -02                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../pages/blog.html">Blog</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="Etc_blog.html">Etc</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">How to Change System Time on Windows-10 from Local Time to UTC</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   </div>
+<!--------------------------------------------------->
+<!--  End of Header                                -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<div class="container-fluid">
+  <br>
   <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        Etc Blog
-      </h3>
-
-      <div class="blog-post">
-        <h2 class="blog-post-title">How to Change System Time on Windows-10 from Local Time to UTC</h2>
-        <p class="blog-post-meta">Beyond Here</a></p>
-        <hr>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog List                                     -->
+<!--------------------------------------------------->
+    <aside class="col-md-3 blog-sidebar">
+        <div class="p-3 mb-1 bg-light rounded">
+            <h4 class="font-italic">Etc Blog</h4><!--------------------------------------------------->
+<!-- How to Change System Time on Windows-10 from Local Time to UTC -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="change_win10_system_time.html" style="text-decoration:none">How to Change System Time on Windows-10 from Local Time to UTC</a></li>
+            </ol>
+        </div>
+    </aside><!-- /.blog-sidebar -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog & Right                                  -->
+<!--------------------------------------------------->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-md-3">
+   <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+                <div class="col-md-8 blog-main">
+                  <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+                    <h2 class="blog-post-title">How to Change System Time on Windows-10 from Local Time to UTC</h2>
+                    <p class="blog-post-meta">Beyond Here</a></p>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog Environment                              -->
+<!--------------------------------------------------->
+<hr>
 <pre>
-    Environment
-      OS : Windows 10
+  Environment
+    OS : Windows10
 </pre>
-        <hr>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog YouTube                                  -->
+<!--------------------------------------------------->
+<br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
          <p>If you use Ubuntu-20.04(18.04 or later)  & Windows10 Multi-booting, System Time is Missed.</p>
          <p>Because System Time of Ubuntu-20.04(18.04 or later) is UTC but  System Time of Windows10 is Local Time.</p>
          <p>It is solved by change System Time of Windows10 to UTC</p>
@@ -65,30 +181,58 @@
 
 New > DWORD (32bit) Value
 RealTimeIsUniversal
-Value data : 1</pre>      
-        <p>Reload System</p>
+Value data : 1</pre>
+<p>Reload System</p>
+<!--------------------------------------------------->
+<!-- End of Blog Contents                          -->
+<!--------------------------------------------------->
+                  </div><!-- /.blog-post -->
+                </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">Change Win10 System Time to UTC</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+                    <ol class="list-unstyled">
+                      <li><a href="https://yism12.blogspot.com/" style="text-decoration:none">Google Blogger</a></li>
+                    </ol>
+                  </div>
+        </aside><!-- /.blog-sidebar -->
+</div>
+</main>
+  </div>
+</div>
+<br><br><br>
+<!--------------------------------------------------->
+<!--  Fotter                                       -->
+<!--------------------------------------------------->
+<div id = footer>
+    <nav class="navbar navbar-dark flex-md-nowrap p-0 shadow" style="background-color: black;">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Beyond Here By YiWorkDisk</a>
+        <ul class="navbar-nav px-3 col-10">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link"> </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="../js/dashboard.js"></script>
+  </body>
 
-      </div><!-- /.blog-post -->
+<!--------------------------------------------------->
 
-    </div><!-- /.blog-main -->
-
-    <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">Change Win10 System Time to UTC</p>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="https://yism12.blogspot.com/", target="_parent">Google Blogger</a></li>
-        </ol>
-      </div>
-    </aside><!-- /.blog-sidebar -->
-
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-</body>
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
 </html>
