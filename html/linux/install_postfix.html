@@ -239,6 +239,12 @@
             <ol class="list-unstyled" style="font-size:medium;">
                 <li><a href="install_armbian_r1.html" style="text-decoration:none">How to Install Armbian on Orangi Pi-R1</a></li>
             </ol>
+<!--------------------------------------------------->
+<!-- How to Install RoundCube with Postfix, Dovecot, NGINX, MariaDB (or MySQL) on Ubuuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_roundcube.html" style="text-decoration:none">How to Install RoundCube with Postfix, Dovecot, NGINX, MariaDB (or MySQL) on Ubuuntu-20.04</a></li>
+            </ol>
         </div>
     </aside><!-- /.blog-sidebar -->
 <!--------------------------------------------------->
@@ -264,10 +270,10 @@
 <!--------------------------------------------------->
 <hr>
 <pre>
-    Environment
-      Device :  Odroid-HC2
-      OS : Ubuntu-20.04
-      Pre Insalled App : MariaDB(or MySQL)
+  Environment
+    Device :  Odroid-HC2
+    OS : Ubuntu-20.04
+    Pre Insalled App : MariaDB(or MySQL)
 
 </pre>
 <hr>
@@ -419,16 +425,16 @@ dbname = mail_server
 query = SELECT 1 FROM virtual_domains WHERE name='%s'</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
 $ sudo postmap -q test.com mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
-        <h5>3) Generate mysql-virtual-mailbox-domains.cf</h5>
-<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
+        <h5>3) Generate mysql-virtual-mailbox-maps.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>sudo nano /etc/postfix/mysql-virtual-mailbox-maps.cf</code></pre>
         <h10>Insert Configuration</h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
 password = test@test
 hosts = 127.0.0.1
 dbname = mail_server
-query = SELECT 1 FROM virtual_domains WHERE name='%s'</code></pre>
+query = SELECT 1 FROM virtual_users WHERE email='%s'</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
-$ sudo postmap -q test.com mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
+$ sudo postmap -q test.com mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf</code></pre>
         <h5>4) Generate mysql-virtual-alias-maps.cf</h5>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
@@ -482,10 +488,10 @@ protocols = imap pop3 lmtp</code></pre>
         <h5>3) Setup 10-mail.conf</h5>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-mail.conf</code></pre>
         <h10>Change Configuration</h10>
-<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mail_location = mbox:~/mail:INBOX=/var/mail/%ul</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mail_location = mbox:~/mail:INBOX=/var/mail/%u</code></pre>
         <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>#mail_location = mbox:~/mail:INBOX=/var/mail/%u
-mail_location = maildir:/var/mail/vhosts/%d/%nl</code></pre>
+mail_location = maildir:/var/mail/vhosts/%d/%n</code></pre>
 <pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mail_privileged_group = mail</code></pre>
         <h10>==></h10>
 <pre style="background-color: lightcyan; padding: 0.5rem;"><code>mail_privileged_group = mail</code></pre>
