@@ -1,0 +1,28 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Change Win10 System Time to UTC
+keywords : win10,windows10,system,time,local,utc,multibooting
+generator : YiSM html Generator
+title : How to Change System Time on Windows-10 from Local Time to UTC
+blog : Etc
+environment :
+  Environment
+    OS : Windows10youtube : 
+contents :
+         <p>If you use Ubuntu-20.04(18.04 or later)  & Windows10 Multi-booting, System Time is Missed.</p>
+         <p>Because System Time of Ubuntu-20.04(18.04 or later) is UTC but  System Time of Windows10 is Local Time.</p>
+         <p>It is solved by change System Time of Windows10 to UTC</p>
+        <br>
+        <h2>1. Execute Registry Editor</h2>
+        <br>
+        <p>Press Win+R</p>
+        <p>Execute regedit</p>
+        <p>Browse</p>
+<pre>\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation
+
+New > DWORD (32bit) Value
+RealTimeIsUniversal
+Value data : 1</pre>
+        <p>Reload System</p>
+

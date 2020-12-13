@@ -1,0 +1,32 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Windows TrueType Fonts Installation on Ubuntu
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,font,window,truetype,ttf
+generator : YiSM html Generator
+title : How to Install Windows Fonts on Ubuntu
+blog : Linux
+environment :
+  Environment
+    PC1 :
+      Device : x64
+      OS : Windows10
+    PC2 :
+      Device : Odroid-HC2(or XU4)
+      OS : Ubuntu-20.04youtube : https://youtu.be/vQl1_Oz7gvE
+contents :
+        <h2>1. Upload Windows Truetype Fonts to Ubuntu</h2>
+        <br>
+        <h5>Compressed Fonts Files on Windows</h5>
+<pre><code>> mkdir TTF
+> copy C:\Windows\Fonts\*.ttf .\TTF\
+> copy C:\Windows\Fonts\*.ttc .\TTF\</code></pre>
+        <p>Compress TTF Folder<p>
+        <h5>Copy Compressed File to Ubuntu</h5>
+        <br>
+        <h2>2. Install Truetype Fonts on Ubuntu</h2>
+        <br>
+<pre><code>$ unzip TTF.zip
+$ sudo cp -R TTF /usr/share/fonts/truetype/
+$ sudo fc-cache -v -f</code></pre>
+

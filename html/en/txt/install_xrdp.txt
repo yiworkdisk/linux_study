@@ -1,0 +1,38 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Windows Remote Desktop Service Installation using XRDP
+keywords : ubuntu,20.04,odroid,hc2,xu4,rdp
+generator : YiSM html Generator
+title : How to Install XRDP on Ubuntu-20.04
+blog : Linux
+environment :
+  Environment
+    Device :  Odroid-HC2(orXU4)
+    OS : Ubuntu-20.04P
+youtube : https://youtu.be/SyzlDyqinBM
+contents :
+        <h2>1. Install XRDP</h2>
+        <br>
+<pre><code>$ sudo install xrdp icewm -y
+$ sudo install icewm -y
+$ cp /etc/xrdp/startwm.sh /etc/xrdp/startwm.sh.orig
+$ nano /etc/xrdp/startwm.sh</code></pre>
+        <h10>Change Configuration</h10>
+<pre><code>test -x /etc/X11/Xsession && exec /etc/X11/Xsession
+exec /bin/sh /etc/X11/Xsession</code></pre>
+        <h10>==></h10>
+<pre><code>#test -x /etc/X11/Xsession && exec /etc/X11/Xsession
+#exec /bin/sh /etc/X11/Xsession
+mate-session</code></pre>
+        <br>
+        <h2>2. Setup Korean Language</h2>
+        <br>
+<pre><code>$ sudo apt install ibus ibus-hangul
+$ cp ~/.bashrc ~/.bashrc.orig
+$ nano ~/.bashrc</code></pre>
+        <h10>Insert Configuration</h10>
+<pre><code>export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus</code></pre>
+

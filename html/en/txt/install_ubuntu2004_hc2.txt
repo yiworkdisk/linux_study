@@ -1,0 +1,83 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Ubuntu-20.04 installation on Odroid-HC2
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4
+generator : YiSM html Generator
+title : How To Install Ubuntu-20.04 on Odroid-HC2
+blog : Linux
+environment :
+  Environment
+    Device : Odroid-HC2
+    OS : Ubuntu-20.04
+    Host : test (192.168.101.100)
+youtube : https://youtu.be/AvcYB_TgdI0
+contents :
+      <h2>1. Install Ubuntu-20.04 on Odroid-HC2</h2>
+      <br>
+      <h5>1) Download Ubuntu-20.04 Image from Hardkernel Website</h5>
+      <h5>2) Install  Ubuntu-20.04 with balenaEtcher on Micro SD</h5>
+      <h5>3) Install Micro SD On Odroid-HC2</h5>
+      <h5>4) Power on Odroid-HC2</h5>
+      <h5>5) Search IP with Angry IP Scanner on Odroid-HC2</h5>
+      <br>
+      <h2>2. Initial Setup on Odroid-HC2</h2>
+      <br>
+      <h5>1) Change default password</h5>
+<pre><code>$ passwd
+$ sudo -i
+# passwd</code></pre>
+      <h5>2) Change Network IP</h5>
+<pre><code>$ sudo nmcli con show
+$ sudo nmcli con add con-name "main" ifname  eth0 type ethernet  ip4 192.168.101.100/24 gw4 192.168.101.1
+$ sudo nmcli con show
+$ sudo nmcli conn delete 'Wired connection 1'</code></pre>
+      <p> Connect to New IP<p>
+<pre><code>$ sudo cp /etc/NetworkManager/system-connections/main.nmconnection  /etc/NetworkManager/system-connections/main.nmconnection.orig
+$ sudo nano /etc/NetworkManager/system-connections/main.nmconnection</code></pre>
+      <h10>Insert Configuration</h10>
+<pre><code>dns=192.168.101.100;8.8.8.8;
+dns-search=test.com</code></pre>
+      <h5>3) Change hostname & domainname</h5>
+<pre><code>$ sudo hostname
+$ sudo hostname test
+$ sudo hostname
+$ sudo cp /etc/hostname /etc/hostname.orig
+$ sudo nano /etc/hostname</code></pre>
+      <h10>Change Configuration</h10>
+<pre><code>odroid</code></pre>
+<pre><code>test</code></pre>
+<pre><code>$ sudo cp /etc/hosts /etc/hosts.orig
+$ sudo nano /etc/hosts</code></pre>
+      <h10>Change Configuration</h10>
+<pre><code>127.0.0.1     odroid</code></pre>
+      <h10>==></h10>
+<pre><code>127.0.0.1     test test.test.com</code></pre>
+<pre><code>::1           localhost ip6-localhost ip6-loopback</code></pre>
+      <h10>==></h10>
+<pre><code>::1           test test.test.com localhost ip6-localhost ip6-loopback</code></pre>
+<pre><code>$ sudo shutdown -r now</code></pre>
+      <h5>4) Upgrade all package</h5>
+<pre><code>$ sudo apt update ; sudo apt dist-upgrade -y ; sudo apt autoremove -y</code></pre>
+      <h5>5) Install Bash autocompletion</h5>
+<pre><code>$ sudo apt install bash-completion -y</code></pre>
+      <h5>6) Generate new Account</h5>
+<pre><code>$ sudo adduser test
+$ sudo cp /etc/group /etc/group.orig
+$ sudo nano /etc/group</code></pre>
+      <h10>Change Configuration</h10>
+<pre><code>odroid</code></pre>
+      <h10>==></h10>
+<pre><code>odroid,test</code></pre>
+      <h5>7) Install additional utils</h5>
+<pre><code>$ sudo apt install mc byobu vlc smplayer xrdp remmina</code></pre>
+      <h5>8) Install resolvconf</h5>
+<pre><code>$ sudo cat /etc/resolv.conf
+$ sudo apt install resolvconf
+$ sudo cp /etc/resolvconf/resolv.conf.d/head /etc/resolvconf/resolv.conf.d/head.orig
+$ sudo nano /etc/resolvconf/resolv.conf.d/head</code></pre>
+      <h10>Insert Configuration</h10>
+<pre><code>nameserver 192.168.101.100
+nameserver 164.124.101.2</code></pre>
+<pre><code>$ sudo cat /etc/resolv.conf</code></pre>
+

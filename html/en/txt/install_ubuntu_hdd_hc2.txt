@@ -1,0 +1,158 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Installation Ubuntu on HDD(or SSD of USB) at Odroid-HC2
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,au4,hdd,ssd,usb
+generator : YiSM html Generator
+title : How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2
+blog : Linux
+environment :
+  Environment
+    Device : Odroid-HC2
+    OS : Ubuntu-20.04
+    Root Partition :   mmcblk1p2 ==> sda1
+youtube : https://youtu.be/jTcoOpTrLdk
+contents :
+    <p>※ System on MicroSD is very Slow. If you want Faster System, you can Install System on HDD(or SSD of USB) by following the Steps.</p>
+    <p>※ Device that is not Supported booting from HDD or SSD or USB has same procedure</p>
+    <br>
+    <h2>1. Re-partitioning HDD</h2>
+    <br>
+    <h2>1) Check Partition</h2>
+<pre><code>$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            925M     0  925M   0% /dev
+tmpfs           200M  3.6M  196M   2% /run
+/dev/mmcblk1p2   30G  4.9G   25G  17% /
+...
+/dev/mmcblk1p1  128M   23M  106M  18% /media/boot
+tmpfs           200M  8.0K  200M   1% /run/user/121
+tmpfs           200M  4.0K  200M   1% /run/user/1001
+</code></pre>
+    <h2>2) Re-Partitioning HDD</h2>
+<pre><code>$sudo fdisk -l
+...
+Disk /dev/sda: 298.9 GiB, 320072933376 bytes, 625142448 sectors
+Disk model:
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: FA88429A-0C8A-3D4E-90A8-CDB019307B6C
+</code></pre>
+<pre><code>$ sudo fdisk /dev/sda
+Command (m for help): g
+Created a new GPT disklabel (GUID: 200F0D86-C2B4-CB4A-BD51-E9F766D736FE).
+
+Command (m for help): n
+Partition number (1-128, default 1):
+First sector (2048-625142414, default 2048):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-625142414, default 625142414): +100G
+
+Created a new partition 1 of type 'Linux filesystem' and of size 100 GiB.
+Partition #1 contains a vfat signature.
+
+Do you want to remove the signature? [Y]es/[N]o: y
+
+The signature will be removed by a write command.
+
+Command (m for help): p
+Disk /dev/sda: 298.9 GiB, 320072933376 bytes, 625142448 sectors
+Disk model:
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 200F0D86-C2B4-CB4A-BD51-E9F766D736FE
+
+Device     Start       End   Sectors  Size Type
+/dev/sda1   2048 209717247 209715200  100G Linux filesystem
+
+Filesystem/RAID signature on partition 1 will be wiped.
+
+Command (m for help): wq
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+    <p>※ The above is a 100GB sda1 created for work after initializing the HDD.</p>
+    <p>※ Proceed according to your Situation</p>
+    <br>
+    <h2>2. Format as an EXT4 and Mount</h2>
+    <br>
+    <h5>1) Format HDD(or SSD or USB) Partition to EXT4</h5>
+<pre><code>$ sudo mkfs.ext4 /dev/sda1</code></pre>
+    <h5>2) Mount HDD(or SSD or USB) Partition</h5>
+<pre><code>$ sudo mkdir -p /media/sys
+$ sudo mount /dev/sda1 /media/sys
+</code></pre>
+<pre><code>$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            925M     0  925M   0% /dev
+tmpfs           200M  3.6M  196M   2% /run
+/dev/mmcblk1p2   30G  4.9G   25G  17% /
+...
+/dev/mmcblk1p1  128M   23M  106M  18% /media/boot
+tmpfs           200M  8.0K  200M   1% /run/user/121
+tmpfs           200M  4.0K  200M   1% /run/user/1001
+/dev/sda1        98G   61M   93G   1% /media/sys
+</code></pre>
+    <br>
+    <h2>3. Modify Setup files</h2>
+    <br>
+    <h5>1) Check UUID</h5>
+<pre><code>$ sudo lsblk -f
+NAME        FSTYPE   LABEL  UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+...
+sda
+`-sda1      ext4            <u><i>eed45733-3551-4b98-b081-bf7aa29490d1</i></u>   92.9G     0% /media/sys
+mmcblk1
+|-mmcblk1p1 vfat     boot   52AA-6867                             105.4M    17% /media/boot
+`-mmcblk1p2 ext4     rootfs <u><i>e139ce78-9841-40fe-8823-96a304a09859</i></u>   24.3G    17% /
+</code></pre>
+    <h5>2) Modify boot.ini</h5>
+    <p>Change root UUID from mmcblk1p2 to sda1</p>
+<pre><code>$ sudo cp /media/boot/boot.ini /media/boot/boot.ini.orig
+$ sudo nano /media/boot/boot.ini
+</code></pre>
+    <h10>Change Configuration</h10>
+<pre><code># Boot Args
+setenv bootargs "console=tty1 console=ttySAC2,115200n8 root=UUID=<u><i>e139ce78-9841-40fe-8823-96a304a09859</i></u> rootwait ro fsck.repair=yes net.ifnames=0 ${videoconfig} ${hdmi_phy_control} ${hid_quirks} smsc95xx.macaddr=${macaddr} ${external_watchdog}"
+</code></pre>
+    <h10>==></h10>
+<pre><code># Boot Args
+setenv bootargs "console=tty1 console=ttySAC2,115200n8 root=UUID=<u><i>eed45733-3551-4b98-b081-bf7aa29490d1</i></u> rootwait ro fsck.repair=yes net.ifnames=0 ${videoconfig} ${hdmi_phy_control} ${hid_quirks} smsc95xx.macaddr=${macaddr} ${external_watchdog}"
+</code></pre>
+    <h5>3) Modify fstab</h5>
+    <p>Change root from mmcblk1p2 to sda1</p>
+<pre><code>$ sudo cp /etc/fstab /etc/fstab.orig
+$ sudo nano /etc/fstab
+</code></pre>
+    <h10>Change Configuration</h10>
+<pre><code>UUID=e139ce78-9841-40fe-8823-96a304a09859 / ext4 errors=remount-ro,noatime 0 1
+LABEL=boot /media/boot vfat defaults 0 1
+</code></pre>
+    <h10>==></h10>
+<pre><code>#UUID=e139ce78-9841-40fe-8823-96a304a09859 / ext4 errors=remount-ro,noatime 0 1
+LABEL=boot /media/boot vfat defaults 0 1
+/dev/sda1 / ext4 defaults,noatime 0 1
+</code></pre>
+    <br>
+    <h2>4. Copy the root partition</h2>
+    <br>
+<pre><code>$ sudo rsync -axv / /media/sys/</code></pre>
+    <br>
+    <h2>5. Check Root Partition</h2>
+    <br>
+    <h5>1) Reset System</h5>
+    <h5>2) Check Root Partition</h5>
+<pre><code>$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            925M     0  925M   0% /dev
+tmpfs           200M  3.6M  196M   2% /run
+/dev/sda1        98G  5.8G   88G   7% /
+...
+/dev/mmcblk1p1  128M   23M  106M  18% /media/boot
+tmpfs           200M  8.0K  200M   1% /run/user/121
+tmpfs           200M  4.0K  200M   1% /run/user/1001
+</code></pre>

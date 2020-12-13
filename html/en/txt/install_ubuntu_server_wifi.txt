@@ -1,0 +1,60 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : WiFi Installation on Ubuntu-Server 20.04
+keywords : ubuntu,server,ubuntu-server,20.04,wifi
+generator : YiSM html Generator
+title : How to Install WiFi on Ubuntu-Server 20.04
+blog : Linux
+environment :
+  Environment
+    Device : ONDA V80Plus
+      CPU: Intel Z3800
+      RAM : 2G
+      WiFi Interface : wlan0
+    OS : Ubuntu-Server 20.04
+    Host : test(192.168.101.99/24)
+    AP
+      SSID : test
+      PW : testtest
+youtube : 
+contents :
+        <h2>1. Install WPA</h2>
+<pre><code>$ sudo apt install wpasupplicant -y</code></pre>
+        <br>
+        <h2>2. Generate WiFi Setting</h2>
+        <br>
+<pre><code>$ sudo cp /usr/share/doc/netplan/examples/wireless.yaml /etc/netplan/99_config.yaml
+$ sudo nano /etc/netplan/99_config.yaml</code></pre>
+        <h10>Change Configuration</h10>
+<pre><code>network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlp2s0b1:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.0.99/24]
+      gateway4: 192.168.0.1
+      nameservers:
+        addresses: [192.168.0.1, 8.8.8.8]
+      access-points:
+        "network_ssid_name":
+          password: "**********"</code></pre>
+        <h10>==></h10>
+<pre><code>network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlan0:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.101.99/24]
+      gateway4: 192.168.101.1
+      nameservers:
+        addresses: [192.168.0.210, 8.8.8.8]
+      access-points:
+        "test":
+          password: "testtest"</code></pre>
+<pre><code>$ sudo netplan apply</code></pre>
+

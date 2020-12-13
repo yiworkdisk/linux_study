@@ -1,0 +1,152 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Web Site
+keywords : website
+generator : YiSM html Generator
+title : Web Site
+blog : Etc
+environment :
+youtube : 
+contents :
+<table class="table mb-4">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">
+        Site
+      </th>
+      <th scope="col">
+        Download
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-nowrap" scope="row">Putty</th>
+      <td>
+        <a href = "https://www.putty.org" style="text-decoration:none">
+        https://www.putty.org
+      </td>
+      <td>
+       <a href = "ftp://ftp.chiark.greenend.org.uk/users/sgtatham/putty-latest/w64/putty-64bit-0.74-installer.msi" style="text-decoration:none">
+       V0.74 - 64bt/Windows
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap" scope="row">ANACONDA</th>
+      <td>
+        <a href = "https://anaconda.org" style="text-decoration:none">
+        https://anaconda.org
+      </td>
+      <td>
+       <a href = "https://repo.anaconda.com/archive/Anaconda3-2020.11-Windows-x86_64.exe" style="text-decoration:none">
+       V2020.11 - Windows
+      <br>
+       <a href = "https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh" style="text-decoration:none">
+       V2020.11 - Linux
+      </td>
+    <tr>
+      <th class="text-nowrap" scope="row">MiniForge</th>
+      <td>
+        <a href = "https://github.com/conda-forge/miniforge" style="text-decoration:none">
+        https://github.com/conda-forge/miniforge
+      </td>
+      <td>
+       <a href = "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh" style="text-decoration:none">
+       Latest Version
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap" scope="row">phpSysInfo</th>
+      <td>
+        <a href = "https://phpsysinfo.github.io/phpsysinfo" style="text-decoration:none">
+        https://phpsysinfo.github.io/phpsysinfo
+      </td>
+      <td>
+       <a href = "https://github.com/phpsysinfo/phpsysinfo/archive/v3.3.2.zip" style="text-decoration:none">
+       V3.3.2 - ZIP
+       <br>
+       <a href = "https://github.com/phpsysinfo/phpsysinfo/archive/v3.3.2.tar.gz" style="text-decoration:none">
+       V3.3.2 - TAR.GZ
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap" scope="row">WordPress</th>
+      <td>
+        <a href = "https://wordpress.org" style="text-decoration:none">
+        https://wordpress.org
+      </td>
+      <td>
+       <a href = "https://wordpress.org/latest.zip" style="text-decoration:none">
+       Latest Version
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap" scope="row">RounCube</th>
+      <td>
+        <a href = "https://roundcube.net" style="text-decoration:none">
+        https://roundcube.net
+      </td>
+      <td>
+       <a href = "https://github.com/roundcube/roundcubemail/releases/download/1.4.9/roundcubemail-1.4.9-complete.tar.gz" style="text-decoration:none">
+       V1.4.9
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap" scope="row">BootStrap</th>
+      <td>
+        <a href = "https://getbootstrap.com" style="text-decoration:none">
+        https://getbootstrap.com
+      </td>
+      <td>
+       <a href = "https://github.com/twbs/bootstrap/releases/download/v4.5.3/bootstrap-4.5.3-dist.zip" style="text-decoration:none">
+       V4.5.3 - Compiled CSS and JS
+       <br>
+       <a href = "https://github.com/twbs/bootstrap/releases/download/v4.5.3/bootstrap-4.5.3-examples.zip" style="text-decoration:none">
+       V4.5.3 - Examples
+       <br>
+       <a href = "https://github.com/twbs/bootstrap/releases/download/v5.0.0-beta1/bootstrap-5.0.0-beta1-dist.zip" style="text-decoration:none">
+       V5.0.0-beta1 - Compiled CSS and JS
+       <br>
+       <a href = "https://github.com/twbs/bootstrap/releases/download/v5.0.0-beta1/bootstrap-5.0.0-beta1-examples.zip" style="text-decoration:none">
+       V5.0.0-beta1 - Examples
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap" scope="row">Feather Icons</th>
+      <td>
+        <a href = "https://feathericons.com" style="text-decoration:none">
+        https://feathericons.com
+      </td>
+      <td>
+       <a href = "https://github.com/feathericons/feather/archive/v4.28.0.zip" style="text-decoration:none">
+       V4.28.0 - ZIP
+       <br>
+       <a href = "https://github.com/feathericons/feather/archive/v4.28.0.tar.gz" style="text-decoration:none">
+       V4.28.0 - TAR.GZ
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap" scope="row">VSCode</th>
+      <td>
+        <a href = "https://code.visualstudio.com" style="text-decoration:none">
+        https://code.visualstudio.com
+      </td>
+      <td>
+       <a href = "https://code.visualstudio.com/Download" style="text-decoration:none">
+       Dowload Page
+      </td>
+    </tr><tr>
+      <th class="text-nowrap" scope="row">AcroEdit</th>
+      <td>
+        <a href = "http://www.acrosoft.pe.kr" style="text-decoration:none">
+        http://www.acrosoft.pe.kr
+      </td>
+      <td>
+       <a href = "http://www.acrosoft.pe.kr/files/acroeditu_64_latest_setup.exe" style="text-decoration:none">
+       Latest Version
+      </td>
+    </tr>
+  </tbody>
+</table>

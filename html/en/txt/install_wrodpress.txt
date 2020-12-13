@@ -1,0 +1,61 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Web Service installation using WordPress
+keywords : ubuntu,20.04,odroid,hc2,xu4,wordpress,mariadb,mysql,nginx
+generator : YiSM html Generator
+title : How to Install WordPress with MariaDB (or MySQL) on Ubuntu-20.04
+blog : Linux
+environment :
+  Environment
+    Device :  Odroid-HC2
+    OS : Ubuntu-20.04
+    HostName : test
+    IP : 192.168.101.100
+    Pre Insall App : Mairadb(or MySQL), NGINX, PHP
+youtube : https://youtu.be/ydPfmXagGVM
+contents :
+         <h2>1. Install wordpress</h2>
+         <br>
+<pre><code>$ sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-net-ldap2 php-net-ldap3 php-net-idna2 -y
+$ wget https://wordpress.org/latest.zip
+$ unzip latest.zip</code></pre>
+         <br>
+         <h2>2. Generate database for wordpress</h2>
+         <br>
+         <hr>
+<pre>WordPress
+   SQL database : wordpress
+   SQL userid : wordpress
+   SQL password : test@test</pre>
+         <hr>
+         <p>※ Change it to suit your environment</p>
+<pre><code>$ sudo mysql -u root
+> create database wordpress;
+> grant all on wordpress.* to wordpress@localhost identified by 'test@test';
+> flush privileges;
+> quit;</code></pre>
+        <br>
+        <h2>3. Copy WordPress</h2>
+        <br>
+<pre><code>$ sudo cp -R wordpress /var/www/html/wp
+$ sudo chown  -R www-data:www-data /var/www/html/wp
+$ sudo ls /var/www/html/ -l</code></pre>
+        <br>
+        <h2>4. Generate WordPress Initial Setting</h2>
+        <br>
+<hr>
+<pre>WordPress
+  SQL database : wordpress
+  SQL userid : wordpress
+  SQL password : test@test
+</pre>
+<hr>
+        <p>※ Change it to suit your environment</p>
+        <h5>Connet to WordPress Web (http://192.168.101.100/wp)</h5>
+        <h5>Select your Language</h5>
+        <h5>Insert your Database Information</h5>
+        <h5>Insert your WordPress Infomation</h5>
+        <h5>Login your Account</h5>
+        <h5>Change your Theme</h5>
+

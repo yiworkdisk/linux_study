@@ -1,0 +1,72 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Web Mail Service Installation by RoundCube on Ubuntu-20.04
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,postfix,dovecot,mariadb,mysql,roundcube,webmail
+generator : YiSM html Generator
+title : How to Install RoundCube with Postfix, Dovecot, NGINX, MariaDB (or MySQL) on Ubuuntu-20.04
+blog : Linux
+environment :
+  Environment
+    Device :  Odroid-HC2
+    OS : Ubuntu-20.04
+    HOST : test (192.168.101.100)
+    Pre Insalled App : MariaDB(or MySQL), NGINX, PHP, POSTFIX, DOVECOT
+youtube : https://youtu.be/9cjw1V0K2hY
+contents :
+        <h2>1. Install PHP Plugin</h2>
+        <br>
+        <h5>Install PHP Plugin</h5>
+<pre><code>$ sudo apt install openssl composer php-net-smtp php-mysql php-gd php-xml php-mbstring php-intl php-zip php-json php-pear php-bz2 php-gmp php-imap php-imagick php-auth-sasl php-net-idna2 php-mail-mime php-net-ldap3 php-net-sieve -y</code></pre>
+       <br>
+        <h2>2. Install RoundCube</h2>
+        <br>
+<pre><code>$ wget https://github.com/roundcube/roundcubemail/releases/download/1.4.9/roundcubemail-1.4.9-complete.tar.gz</code></pre>
+<pre><code>$ tar xzf roundcubemail-1.4.9-complete.tar.gz</code></pre>
+<pre><code>$ sudo cp -r roundcubemail-1.4.9 /var/www/html/roundcube</code></pre>
+        <br>
+        <h2>3. Generate database for RoundCube</h2>
+<pre><code>$ sudo chown -R www-data.www-data /var/www/html/roundcube/
+$ sudo chmod -R 775 /var/www/html/roundcube/{temp,logs}</code></pre>
+        <br>
+        <h2>4. Generate database for RoundCube</h2>
+        <br>
+        <hr>
+<pre>
+  WordPress
+    SQL database : roundcube
+    SQL userid : roundcube
+    SQL password : test@test</pre>
+         <hr>
+        <br>
+<pre><code>$ sudo mysql -u root -p</code></pre>
+<pre><code>> create database roundcube;
+> create user roundcube@localhost identified by 'test@test';
+> grant all on roundcube.* to roundcube@localhost;
+> flush privileges;
+> quit;</code></pre>
+        <br>
+        <h2>5. Generate RoundCube Initail Setting</h2>
+        <br>
+        <h5>1) Connect to http://192.168.101.100/roundcube/installer/</h5>
+        <hr>
+<pre>
+  WordPress
+    SQL database : roundcube
+    SQL userid : roundcube
+    SQL password : test@test
+  Mail Server
+    SMTP
+      server : localhost
+      port : 25
+      email : test@test.com
+      password : test@test
+    IMAP
+      server : localhost
+      port : 143
+      email : test@test.com
+      password : test.com
+    language : en_US</pre>
+         <hr>
+        <p>※ Above is My Environment, Modify it to suit your environment</p>
+        <h5>2) Connect to http://192.168.101.100/roundcube</h5>

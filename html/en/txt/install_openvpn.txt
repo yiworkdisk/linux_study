@@ -1,0 +1,201 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : VPN Service Installation by OpenVPN on Ubuntu-20.04
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,openvpn,vpn
+generator : YiSM html Generator
+title : How to Install OpenVPN on Ubuntu-20.04
+blog : Linux
+environment :
+  Environment
+    Device : Odroid-HC2
+    OS : Ubuntu-20.04
+    Host : test(192.168.101.100/24)
+    VPN Network : 10.8.0.0/24
+youtube : https://youtu.be/xuygSHpJ1Io
+contents :
+        <hr>
+<pre>
+    File Info
+      ca.crt : CA(Certificate Authority) crt File
+      dh2048.pem : DH(Diffie-Hellman) parameters File
+      ta.key : tls-auth key File
+      test.key : OpenVPN Server key File
+      test.crt : OpenVPN Server crt File
+      test.conf : Server Configuration File
+      test-1.key : OpenVPN Client-1 key File
+      test-1.crt : OpenVPN Client-1 crt File
+      test-1.ovpn : OpenVPN Client-1 Configuration File
+      test-2.key : OpenVPN Client-2 key File
+      test-2.crt : OpenVPN Client-2 crt File
+      test-2.ovpn : OpenVPN Client-2 Configuration File
+</pre>
+        <hr>
+        <br>
+        <h2>1. Create vpn account</h2>
+        <br>
+<pre><code>$ sudo adduser vpn
+$ sudo nano /etc/group
+$ su vpn
+$ cd ~</code></pre>
+        <br>
+        <h2>2. Install Openvpn</h2>
+        <br>
+<pre><code>$ sudo apt install openvpn easy-rsa -y</code></pre>
+        <b2>3. Generate of the CA(Certificate Authority)</b2>
+        <br>
+<pre><code>$ ls
+$ make-cadir easy-rsa
+$ ls
+$ cd easy-rsa
+$ cp vars vars.orig
+$ nano vars</code></pre>
+        <h10>Chanage Connfiguration</h10>
+<pre><code>#set_var EASYRSA_REQ_COUNTRY    "US"
+#set_var EASYRSA_REQ_PROVINCE   "California"
+#set_var EASYRSA_REQ_CITY       "San Francisco"
+#set_var EASYRSA_REQ_ORG        "Copyleft Certificate Co"
+#set_var EASYRSA_REQ_EMAIL      "me@example.net"
+#set_var EASYRSA_REQ_OU         "My Organizational Unit</code></pre>
+        <h10>==></h10>
+<pre>set_var EASYRSA_REQ_COUNTRY    "US"
+set_var EASYRSA_REQ_PROVINCE   "NY"
+set_var EASYRSA_REQ_CITY       "NY"
+set_var EASYRSA_REQ_ORG        "TEST"
+set_var EASYRSA_REQ_EMAIL      "test@test.com"
+set_var EASYRSA_REQ_OU         "TEST"<code></code></pre>
+<pre><code>$ ./easyrsa init-pki
+$ ./easyrsa build-ca
+$ cp ./pki/ca.crt ~/</code></pre>
+        <br>
+        <h2>4. Generate the server key and certificate request</h2>
+        <br>
+<pre><code>$ ./easyrsa gen-req test nopass
+$ ./easyrsa sign-req server test
+$ cp ./pki/private/test.key ./pki/issued/test.crt ~/</code></pre>
+        <br>
+        <h2>5. Generate the DH(Diffie-Hellman) parameters</h2>
+        <br>
+<pre>$ ./easyrsa gen-dh
+$ cp ./pki/dh.pem ~/dh2048.pem<code></code></pre>
+        <br>
+        <h2>6. Generate the tls-auth key (ta.key)</h2>
+        <br>
+<pre><code>$ openvpn --genkey --secret ta.key
+$ cp ./ta.key ~/</code></pre>
+        <br>
+        <h2>7. Setup IP Forward</h2>
+        <br>
+<pre><code>$ sudo cp /etc/sysctl.conf /etc/sysctl.conf.orig
+$ sudo nano /etc/sysctl.conf</code></pre>
+        <h10>Chanage Configuration/h10>
+<pre><code>#net.ipv4.ip_forward=1</code></pre>
+        <h10>==></h10>
+<pre><code>net.ipv4.ip_forward=1</code></pre>
+<pre><code>$ sudo sysctl -p</code></pre>
+        <br>
+        <h2>8. Setup Sever configuration</h2>
+        <br>
+<pre><code>$ cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz ./
+$ gzip -d server.conf.gz
+$ cp server.conf test.conf
+$ nano test.conf</code></pre>
+        <h10>Chanage Configuration</h10>
+<pre><code>cert server.crt
+key server.key  # This file should be kept secret</code></pre>
+        <h10>==></h10>
+<pre><code>cert test.crt
+key test.key  # This file should be kept secret</code></pre>
+<pre><code>server 10.8.0.0 255.255.255.0</code></pre>
+<h10>==></h10>
+<pre><code>server 10.8.0.0 255.255.255.0</code></pre>
+<pre><code>;push "route 192.168.10.0 255.255.255.0"
+;push "route 192.168.20.0 255.255.255.0"</code></pre>
+<h10>==></h10>
+<pre><code>push "route 192.168.101.0 255.255.255.0"
+;push "route 192.168.20.0 255.255.255.0"</code></pre>
+<pre><code>;push "redirect-gateway def1 bypass-dhcp"</code></pre>
+<h10>==></h10>
+<pre><code>push "redirect-gateway def1 bypass-dhcp"</code></pre>
+<pre><code>;push "dhcp-option DNS 208.67.222.222"
+;push "dhcp-option DNS 208.67.220.220"</code></pre>
+<h10>==></h10>
+<pre><code>push "dhcp-option DNS 192.168.101.210"
+push "dhcp-option DNS 8.8.8.8"</code></pre>
+<pre><code>;user nobody
+;group nogroup</code></pre>
+<h10>==></h10>
+<pre><code>;user nobody
+;group nogroup</code></pre>
+<pre><code>$ cp test.conf ~/</code></pre>
+        <br>
+        <h2>9. Generate the Client key and certificate request</h2>
+        <br>
+        <h5>Generate the Client-1 key and certificate request</h5>
+<pre><code>$ ./easyrsa gen-req test-1 nopass
+$ ./easyrsa sign-req client test-1
+$ cp ./pki/issued/test-1.crt pki/private/test-1.key ~/</code></pre>
+        <h5>Generate the Client-2 key and certificate request</h5>
+<pre><code>$ ./easyrsa gen-req test-2 nopass
+$ ./easyrsa sign-req client test-2
+$ cp ./pki/issued/test-2.crt pki/private/test-2.key ~/</code></pre>
+        <br>
+        <h2>10. Setup Client configuration</h2>
+        <br>
+        <hr>
+<pre>
+    Environment
+      Remote Server : XXX.XXXX.XXX
+      Remote Port : YYYY
+</pre>
+        <hr>
+        <br>
+<pre><code>$ cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ./
+$ cp client.conf ~/test-1.ovpn
+$ cp client.conf ~/test-2.ovpn</code></pre>
+<pre><code>$ cd ~/
+$ nano test-1.opvn</code></pre>
+        <h10>Chanage Configuration</h10>
+<pre><code>remote my-server-1 1194</code></pre>
+<h10>==></h10>
+<pre><code>remote XXX.XXXX.XXX  YYYY</code></pre>
+<pre><code>;user nobody
+;group nogroup</code></pre>
+<h10>==></h10>
+<pre><code>;user nobody
+;group nogroup</code></pre>
+<pre><code>cert client.crt
+key client.key</code></pre>
+<h10>==></h10>
+<pre><code>cert test-1.crt
+key test-1.key</code></pre>
+<pre><code>$ nano test-1.opvn</code></pre>
+        <h10>Chanage Configuration</h10>
+<pre><code>remote my-server-1 1194</code></pre>
+<h10>==></h10>
+<pre><code>remote XXX.XXXX.XXX  YYYY</code></pre>
+<pre><code>;user nobody
+;group nogroup</code></pre>
+<h10>==></h10>
+<pre><code>;user nobody
+;group nogroup</code></pre>
+<pre><code>cert client.crt
+key client.key</code></pre>
+<h10>==></h10>
+<pre><code>cert test-2.crt
+key test-2.key</code></pre>
+        <br>
+        <H2>11. Activate OpenVPN Server</H2>
+        <br>
+<pre><code>$ sudo ls /etc/openvpn/
+$ sudo cp ca.crt dh2048.pem ta.key test*.* /etc/openvpn/
+$ sudo ls /etc/openvpn/</code></pre>
+<pre><code>$ sudo systemctl start openvpn@test
+$ sudo journalctl -u openvpn@test -xe</code></pre>
+        <br>
+        <h2>12. Install OpenVPN Client</h2>
+        <br>
+        <h5>Setup Sever Netawork GW</h5>
+        <h5>Copy File to Client</h5>
+        <h5>Install OpenVPN App on Client</h5>
+

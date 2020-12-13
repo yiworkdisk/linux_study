@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="MariaDB (or MYSQL) 기본 명령어">
+    <meta name="keywords" content="mariadb,mysql">
+    <meta name="generator" content="YiSM html Generator">
+    <title>MariaDB (or MYSQL) 기본 명령어</title>
+
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+
+    <!--------------------------------------------------------------------------->
+    <!-- 한글 폰트                                                                    -->
+    <!--------------------------------------------------------------------------->
+
+     @font-face { 
+		  font-family: 'font_ko';
+		  src:url(../../font/NanumGothic.ttf); 
+    }
+
+    <!--------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------->
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../css/blog.css" rel="stylesheet">
+  </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   <body style = "font-family: 'font_ko';">
+<!--------------------------------------------------->
+<!--  Header                                       -->
+<!--------------------------------------------------->
+   <div id = 'header'>
+<!--------------------------------------------------->
+<!--  NavBar - Top -01                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark" style = "background-color: black;">
+      <a class="navbar-brand">Beyond Here</a>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../index.html">Home</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/blog.html">Blog</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/about.html">이 사이트는</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3 col-6">
+          <li class="nav-item text-nowrap">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+      <a href="../../en/etc/mysql_commands.html">
+      <button type="button" class="btn btn-secondary">English</button>
+</nav>
+<!--------------------------------------------------->
+<!--  NavBar - Top -02                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../pages/blog.html">Blog</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="etc_blog.html">Etc</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">MariaDB (or MYSQL) 기본 명령어</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   </div>
+<!--------------------------------------------------->
+<!--  End of Header                                -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<div class="container-fluid">
+  <br>
+  <div class="row">
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog List                                     -->
+<!--------------------------------------------------->
+    <aside class="col-md-3 blog-sidebar">
+        <div class="p-3 mb-1 bg-light rounded">
+            <h4 class="font-italic">Etc Blog</h4>
+<!--------------------------------------------------->
+<!-- Windows-10의 시간을 Local Time에서 UTC로 변경하기 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="change_win10_system_time.html" style="text-decoration:none">Windows-10의 시간을 Local Time에서 UTC로 변경하기</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- 주요 인터넷 사이트 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="html_link.html" style="text-decoration:none">주요 인터넷 사이트</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- MariaDB (or MYSQL) 기본 명령어 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="mysql_commands.html" style="text-decoration:none">MariaDB (or MYSQL) 기본 명령어</a></li>
+            </ol>
+        </div>
+    </aside><!-- /.blog-sidebar -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog & Right                                  -->
+<!--------------------------------------------------->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-md-3">
+   <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+                <div class="col-md-8 blog-main">
+                  <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+                    <h2 class="blog-post-title" style="font-family: 'font_ko';"><b>MariaDB (or MYSQL) 기본 명령어</b></h2>
+                    <p class="blog-post-meta">Beyond Here</a></p>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog Environment                              -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog YouTube                                  -->
+<!--------------------------------------------------->
+<br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
+    <h5>DB 생성</h5>
+    <h10>DB_01 생성</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>create database [DB_01];</code></pre>
+    <br>
+    <h5>전체 DB 확인</h5>
+    <h10>서버의 전체 DB확인</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>show databases;</code></pre>
+    <br>
+    <h5>DB 삭제</h5>
+    <h10>DB_01 삭제</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>drop database [DB_01];</code></pre>
+    <br>
+    <h5>DB 접속</h5>
+    <h10>DB_01 접속</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>use [DB_01];</code></pre>
+    <br>
+    <h5>테이블 확인</h5>
+    <h10>DB의 전체 테이블 확인</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>show tables;</code></pre>
+    <br>
+    <h5>테이블 생성</h5>
+    <h10>필드_01, 필드_02, 필드_03, 필드_04, 필드_05를 가진 테이블 생성</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>
+CREATE TABLE `[Table_Name]` (
+    `필드_01` int(11) NOT NULL,
+    `필드_02` char(10) DEFAULT NULL,
+    `필드_03` char(20) DEFAULT NULL,
+    `필드_04` char(80) DEFAULT NULL,
+    `필드_05` char(20) DEFAULT NULL,
+    PRIMARY KEY (`Field_Name_01`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+    <br>
+    <h5>테이블 삭제</h5>
+    <h10>테이블_01 삭제</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>drop table [테이블_01];</code></pre>
+    <br>
+    <h5>정렬된 레코드 확인</h5>
+    <h10>필드_02='XXXXXX'인 테이블을 필드_01 순서로 정렬하여 표시</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>SELECT [필드_01], [필드_02] FROM [테이블] where [필드_02] = 'XXXXXX' ORDER BY [필드_01];</code></pre>
+    <h10>테이블_01.필드_01=테이블_02.필드_02인 테이블_01의 모든 레코드와 테이블_02.필드_03 확인</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>SELECT [테이블_01].*, [테이블_02].[필드_03]
+FROM [테이블_01] JOIN [테이블_02]
+ON [테이블_01].[필드_01] = [테이블_02].[필드_02];</code></pre>
+    <br>
+    <h5>레코드 정보 갱신</h5>
+    <h10>필드_02='XXXXXX'인 레코드의 필드_01을 'Y'로 수정</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>UPDATE [테이블] SET [필드_01] = 'Y' where [필드_02] = 'XXXXXX';</code></pre>
+    <br>신규 레코드 추가</h5>
+    <h10>필드_01, 필드_02를 가진를 신규 레코드 추가</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>INSERT INTO [테이블] (필드_01, 필드_02)
+VALUES('X_001', 'Y_001'),
+('X_002', 'Y_002'),
+('X_003', 'Y_003');</code></pre>
+    <br>
+    <h5>레코드 삭제</h5>
+    <h10>필드_01 = 'X' 인 레코드 삭제'</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>DELETE FROM [테이블] WHERE 필드_01 = 'X'</code></pre>
+    <br>
+    <h5>필드 추가</h5>
+    <h10>필드_01 추가</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>ALTER TABLE [테이블] ADD [필드_01] text</code></pre>
+    <br>
+    <h5>필드 삭제</h5>
+    <h10>필드_01 삭제</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>ALTER TABLE [테이블] DROP [필드_01]</code></pre>
+    <br>
+    <h5>필드명 변경</h5>
+    <h10>필드_01의 필드명을 필드_02로 수정</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>ALTER TABLE [테이블] CHANGE [필드_01] [[필드_02]</code></pre>
+    <br>
+    <h5>필드 데이터 타입 변경</h5>
+    <h10>필드_01의 데이터 타입을 필드_타입01로 변경</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>ALTER TABLE [테이블] MODIFY [필드_01] [필드_타입01]</code></pre>
+<!--------------------------------------------------->
+<!-- End of Blog Contents                          -->
+<!--------------------------------------------------->
+                  </div><!-- /.blog-post -->
+                </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">MariaDB (or MYSQL) 기본 명령어</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+                    <ol class="list-unstyled">
+                      <li><a href="https://yism12.blogspot.com/" style="text-decoration:none">Google Blogger</a></li>
+                    </ol>
+                  </div>
+        </aside><!-- /.blog-sidebar -->
+</div>
+</main>
+  </div>
+</div>
+<br><br><br>
+<!--------------------------------------------------->
+<!--  Fotter                                       -->
+<!--------------------------------------------------->
+<div id = footer>
+    <nav class="navbar navbar-dark flex-md-nowrap p-0 shadow" style="background-color: black;">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Beyond Here By YiWorkDisk</a>
+        <ul class="navbar-nav px-3 col-10">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link"> </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="../js/dashboard.js"></script>
+  </body>
+
+<!--------------------------------------------------->
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+</html>

@@ -1,0 +1,117 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Conda Installation on Odroid-C2 (or ARM64)
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,conda,miniforge,arm64
+generator : YiSM html Generator
+title : How to Install Conda on Odroid-C2 (or ARM64)
+blog : Linux
+environment :
+  Environment
+    Device : Odroid-C2 (or ARM64)
+    OS : Ubuntu-20.04
+youtube : https://youtu.be/3SbY91_n2bQ
+contents :
+        <p>※ If you want to install Conda on ARM64, </p>
+        <p>you can do it by MiniForge (Conda for ARM64) </p>
+        <br>
+        <h2>1. Generate New Account for Conda</h2>
+        <br>
+<pre><code>$ sudo adduser Conda
+Adding user `conda' ...
+Adding new group `conda' (1003) ...
+Adding new user `conda' (1003) with group `conda' ...
+Creating home directory `/home/conda' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for aa
+Enter the new value, or press ENTER for the default
+        Full Name []: conda
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n]</code></pre>
+<pre><code>$ su conda</code></pre>
+        <br>
+        <h2>2. Install Conda</h2>
+        <br>
+        <h5>1) Download conda</h5>
+<pre><code>$ cd ~
+$ wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
+$ ls
+$ bash Miniforge3-Linux-aarch64.sh
+$ exit</code></pre>
+        <p>※ Install Mini-Forge to Install on ARM64</p>
+<pre><code>$ su conda</code></pre>
+<pre><code>$ cd ~</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre></code>$ conda update --all</code></pre>
+        <h5>2) Generate Python2.7 Environment</h5>
+        <p>Generate Conda Environment</p>
+<pre><code>$ conda create -n py27 python=2.7</code></pre>
+        <p>Activate Conda Environment</p>
+<pre><code>$ conda activate py27</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre><code>$ conda update --all</code></pre>
+        <p>Install Packages</p>
+<pre><code>$ conda install paramiko pymysql beautifulsoup4 jupyterlab pandas</code></pre>
+        <p>Deactivate Conda Environment</p>
+<pre><code>$ conda deactivate</code></pre>
+        <br>
+        <h5>3) Generate Python3.7 Environment</h5>
+        <p>Generate Conda Environment</p>
+<pre><code>$ conda create -n py37 python=3.7</code></pre>
+        <p>Activate Conda Environment</p>
+<pre><code>$ conda activate py37</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre><code>$ conda update --all</code></pre>
+        <p>Install Packages</p>
+<pre><code>$ conda install paramiko pymysql bs4 jupyterlab pandas</code></pre>
+        <p>Deactivate Conda Environment</p>
+<pre><code>$ conda deactivate</code></pre>
+        <br>
+        <h5>4) Generate Python3.8 Environment</h5>
+        <p>Generate Conda Environment</p>
+<pre><code>$ conda create -n py38 python=3.8</code></pre>
+        <p>Activate Conda Environment</p>
+<pre><code>$ conda activate py38</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre><code>$ conda update --all</code></pre>
+        <p>Install Packages</p>
+<pre><code>$ conda install paramiko pymysql bs4 jupyterlab pandas</code></pre>
+        <p>Deactivate Conda Environment</p>
+<pre><code>$ conda deactivate</code></pre>
+        <br>
+        <h5>5) Generate Python3.9 Environment</h5>
+        <p>Generate Conda Environment</p>
+<pre><code>$ conda create -n py39 python=3.9</code></pre>
+        <p>Activate Conda Environment</p>
+<pre><code>$ conda activate py39</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre><code>$ conda update --all</code></pre>
+        <p>Install Packages</p>
+<pre><code>$ conda install paramiko pymysql bs4 jupyterlab pandas</code></pre>
+        <p>Deactivate Conda Environment</p>
+<pre><code>$ conda deactivate</code></pre>
+
+        <p>※ Anaconda is Not Supported on Miniforge3-Linux-aarch64</p>
+
+        <br>
+        <h2>Basic Command of Conda</h2>
+        <br>
+        <p style="margin-bottom: 0;">Show installed Environments List</p>
+        <pre><code>conda env list</code></pre>
+        <p style="margin-bottom: 0;">Generate an Environment</p>
+        <pre><code>conda create -n yourenvironment yourpackages</code></pre>
+        <p style="margin-bottom: 0;">Remove an Environment</p>
+        <pre><code>conda remove --name myenv</code></pre>
+        <p style="margin-bottom: 0;">Upgrade an Package</p>
+        <pre><code>conda update mypackage</code></pre>
+        <p style="margin-bottom: 0;">Upgrade all Packages</p>
+        <pre><code>conda update --all</code></pre>
+        <p style="margin-bottom: 0;">Show installed Packages</p>
+        <pre><code>conda list</code></pre>
+

@@ -1,0 +1,85 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : MariaDB (or MYSQL) Commands
+keywords : mariadb,mysql
+generator : YiSM html Generator
+title : MariaDB (or MYSQL) Commands
+blog : Etc
+environment :
+youtube : 
+contents :
+    <h5>To Create a DB</h5>
+    <h10>To Create DB_Name</h10>
+<pre><code>create database [DB_Name];</code></pre>
+    <br>
+    <h5>To See all the DB</h5>
+    <h10>To See all the DB in Server</h10>
+<pre><code>show databases;</code></pre>
+    <br>
+    <h5>To Delete a DB</h5>
+    <h10>To Delete a DB_Name</h10>
+<pre><code>drop database [DB_Name];</code></pre>
+    <br>
+    <h5>To Switch to a DB</h5>
+    <h10>To Switch to DB_Name</h10>
+<pre><code>use [DB_Name];</code></pre>
+    <br>
+    <h5>To See Tables</h5>
+    <h10>To See all the Tables in the DB</h10>
+<pre><code>show tables;</code></pre>
+    <br>
+    <h5>To Create a Table</h5>
+    <h10>To Create a Table with Field_Name_01 & Field_Name_02 & Field_Name_03 & Field_Name_04 </h10>
+<pre><code>
+CREATE TABLE `[Table_Name]` (
+    `Field_Name_01` int(11) NOT NULL,
+    `Field_Name_02` char(10) DEFAULT NULL,
+    `Field_Name_03` char(20) DEFAULT NULL,
+    `Field_Name_04` char(80) DEFAULT NULL,
+    `Field_Name_05` char(20) DEFAULT NULL,
+    PRIMARY KEY (`Field_Name_01`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+    <br>
+    <h5>To Delete a Table</h5>
+    <h10To Delete Table_Name</h10>
+<pre><code>drop table [Table_Name];</code></pre>
+    <br>
+    <h5>To Show selected Records sorted</h5>
+    <h10>To Show Records sorted in an Field_Name_01 where Field_Name_02 is'XXXXXX' to'Y'</h10>
+<pre><code>SELECT [Fild_Name_01], [Fild_Name_02] FROM [Table_Name] where [Field_Name_02] = 'XXXXXX' ORDER BY [Fild_Name_01];</code></pre>
+    <h10>To Show all Record in Table_Name_01 & Fild_Name_03  in Table_Name_02 with Table_Name_01.Fild_Name_01=Table_Name_02.Fild_Name_02'</h10>
+<pre><code>SELECT [Table_Name_01].*, [Table_Name_02].[Fild_Name_03]
+FROM [Table_Name_01] JOIN [Table_Name_02]
+ON [Table_Name_01].[Fild_Name_01] = [Table_Name_02].[Fild_Name_02];</code></pre>
+    <br>
+    <h5>To Update Records</h5>
+    <h10>To Update Field_Name_01 of Record where Field_Name_02 is'XXXXXX' to'Y'</h10>
+<pre><code>UPDATE [Table_Name] SET [Field_Name_01] = 'Y' where [Field_Name_02] = 'XXXXXX';</code></pre>
+    <br>
+    <h5>To Insert new Records</h5>
+    <h10>To Insert new Record with Field_Name_01 and Field_Name_02'</h10>
+<pre><code>INSERT INTO [Table_Name] (Field_Name_01,Field_Name_02)
+VALUES('X_001', 'Y_001'),
+('X_002', 'Y_002'),
+('X_003', 'Y_003');</code></pre>
+    <br>
+    <h5>To Delete Records</h5>
+    <h10>To Delete Records with Field_Name_01 = 'X'</h10>
+<pre><code>DELETE FROM [Table_Name] WHERE Field_Name_01 = 'X'</code></pre>
+    <br>
+    <h5>To Insert Field</h5>
+    <h10>To Insert Field_Name in Table_Name</h10>
+<pre><code>ALTER TABLE [Table_Name] ADD [Field_Name] [Field_Type]</code></pre>
+    <br>
+    <h5>To Delete Field</h5>
+    <h10>To Delete Field_Name in Table_Name</h10>
+<pre><code>ALTER TABLE [Table_Name] DROP [Field_Name]</code></pre>
+    <br>
+    <h5>To Modify Field Name</h5>
+    <h10>To Modify Field Name from Field_Name_01 to Field_Name_02</h10>
+<pre><code>ALTER TABLE [Table_Name] CHANGE [Field_Name_01] [Field_Name_02]</code></pre>
+    <br>
+    <h5>To Modify Field Type</h5>
+    <h10>To Modify Field Type to Field_Type</h10>
+<pre><code>ALTER TABLE [Table_Name] MODIFY [Field_Name] [Field_Type]</code></pre>

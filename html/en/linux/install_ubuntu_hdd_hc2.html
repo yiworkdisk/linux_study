@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="Installation Ubuntu on HDD(or SSD of USB) at Odroid-HC2">
+    <meta name="keywords" content="ubuntu,20.04,ubuntu-20.04,odroid,hc2,au4,hdd,ssd,usb">
+    <meta name="generator" content="YiSM html Generator">
+    <title>How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2</title>
+
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+
+    <!--------------------------------------------------------------------------->
+    <!-- 한글 폰트                                                                    -->
+    <!--------------------------------------------------------------------------->
+
+     @font-face { 
+		  font-family: 'font_ko';
+		  src:url(../../font/NanumGothic.ttf); 
+    }
+
+    <!--------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------->
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../css/blog.css" rel="stylesheet">
+  </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   <body>
+<!--------------------------------------------------->
+<!--  Header                                       -->
+<!--------------------------------------------------->
+   <div id = 'header'>
+<!--------------------------------------------------->
+<!--  NavBar - Top -01                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark" style = "background-color: black;">
+      <a class="navbar-brand">Beyond Here</a>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../index.html">Home</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/blog.html">Blog</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/about.html">About</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3 col-6">
+          <li class="nav-item text-nowrap">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+      <a href="../../ko/linux/install_ubuntu_hdd_hc2.html">
+      <button type="button" class="btn btn-secondary">한글</button>
+</nav>
+<!--------------------------------------------------->
+<!--  NavBar - Top -02                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../pages/blog.html">Blog</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="linux_blog.html">Linux</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   </div>
+<!--------------------------------------------------->
+<!--  End of Header                                -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<div class="container-fluid">
+  <br>
+  <div class="row">
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog List                                     -->
+<!--------------------------------------------------->
+    <aside class="col-md-3 blog-sidebar">
+        <div class="p-3 mb-1 bg-light rounded">
+            <h4 class="font-italic">Linux Blog</h4>
+<!--------------------------------------------------->
+<!-- How to Install Anaconda on Ubuntu -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_anaconda_ubuntu.html" style="text-decoration:none">How to Install Anaconda on Ubuntu</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_ubuntu_hdd_hc2.html" style="text-decoration:none">How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Bind9 on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_bind.html" style="text-decoration:none">How to Install Bind9 on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Conda on Odroid-C2 (or ARM64) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_conda_c2.html" style="text-decoration:none">How to Install Conda on Odroid-C2 (or ARM64)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install Docker on Odroid-HC2 (or ARM) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_docker_hc2.html" style="text-decoration:none">How To Install Docker on Odroid-HC2 (or ARM)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install Docker on Odroid-C2 (or ARM64) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_docker_c2.html" style="text-decoration:none">How To Install Docker on Odroid-C2 (or ARM64)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install LXD & LXC on Odroid-HC2 (or ARM) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_lxd_hc2.html" style="text-decoration:none">How To Install LXD & LXC on Odroid-HC2 (or ARM)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install MariaDB on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_mariadb.html" style="text-decoration:none">How to Install MariaDB on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install NGINX on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="Install_nginx.html" style="text-decoration:none">How to Install NGINX on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install OpenVPN on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_openvpn.html" style="text-decoration:none">How to Install OpenVPN on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Postfix & Dovecot with MariaDB (or MySQL) on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_postfix.html" style="text-decoration:none">How to Install Postfix & Dovecot with MariaDB (or MySQL) on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install Ubuntu-20.04 on Odroid-HC2 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_ubuntu2004_hc2.html" style="text-decoration:none">How To Install Ubuntu-20.04 on Odroid-HC2</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install WiFi on Ubuntu-Server 20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_ubuntu_server_wifi.html" style="text-decoration:none">How to Install WiFi on Ubuntu-Server 20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Windows Fonts on Ubuntu -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_windows_fonts.html" style="text-decoration:none">How to Install Windows Fonts on Ubuntu</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install WordPress with MariaDB (or MySQL) on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_wrodpress.html" style="text-decoration:none">How to Install WordPress with MariaDB (or MySQL) on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install XRDP on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_xrdp.html" style="text-decoration:none">How to Install XRDP on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Upgrade MariaDB from Ubuntu-18.04 to Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="upgrade_mariadb.html" style="text-decoration:none">How to Upgrade MariaDB from Ubuntu-18.04 to Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Armbian on Orangi Pi-R1 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_armbian_r1.html" style="text-decoration:none">How to Install Armbian on Orangi Pi-R1</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install RoundCube with Postfix, Dovecot, NGINX, MariaDB (or MySQL) on Ubuuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_roundcube.html" style="text-decoration:none">How to Install RoundCube with Postfix, Dovecot, NGINX, MariaDB (or MySQL) on Ubuuntu-20.04</a></li>
+            </ol>
+        </div>
+    </aside><!-- /.blog-sidebar -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog & Right                                  -->
+<!--------------------------------------------------->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-md-3">
+   <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+                <div class="col-md-8 blog-main">
+                  <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+                    <h2 class="blog-post-title"><b>How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2</b></h2>
+                    <p class="blog-post-meta">Beyond Here</a></p>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog Environment                              -->
+<!--------------------------------------------------->
+<hr>
+<pre>
+  Environment
+    Device : Odroid-HC2
+    OS : Ubuntu-20.04
+    Root Partition :   mmcblk1p2 ==> sda1
+
+</pre>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog YouTube                                  -->
+<!--------------------------------------------------->
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/jTcoOpTrLdk"
+              youtube-src-id="jTcoOpTrLdk"
+            ></iframe>
+        </div>
+        <br>
+<br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
+    <p>※ System on MicroSD is very Slow. If you want Faster System, you can Install System on HDD(or SSD of USB) by following the Steps.</p>
+    <p>※ Device that is not Supported booting from HDD or SSD or USB has same procedure</p>
+    <br>
+    <h2>1. Re-partitioning HDD</h2>
+    <br>
+    <h2>1) Check Partition</h2>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            925M     0  925M   0% /dev
+tmpfs           200M  3.6M  196M   2% /run
+/dev/mmcblk1p2   30G  4.9G   25G  17% /
+...
+/dev/mmcblk1p1  128M   23M  106M  18% /media/boot
+tmpfs           200M  8.0K  200M   1% /run/user/121
+tmpfs           200M  4.0K  200M   1% /run/user/1001
+</code></pre>
+    <h2>2) Re-Partitioning HDD</h2>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$sudo fdisk -l
+...
+Disk /dev/sda: 298.9 GiB, 320072933376 bytes, 625142448 sectors
+Disk model:
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: FA88429A-0C8A-3D4E-90A8-CDB019307B6C
+</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo fdisk /dev/sda
+Command (m for help): g
+Created a new GPT disklabel (GUID: 200F0D86-C2B4-CB4A-BD51-E9F766D736FE).
+
+Command (m for help): n
+Partition number (1-128, default 1):
+First sector (2048-625142414, default 2048):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-625142414, default 625142414): +100G
+
+Created a new partition 1 of type 'Linux filesystem' and of size 100 GiB.
+Partition #1 contains a vfat signature.
+
+Do you want to remove the signature? [Y]es/[N]o: y
+
+The signature will be removed by a write command.
+
+Command (m for help): p
+Disk /dev/sda: 298.9 GiB, 320072933376 bytes, 625142448 sectors
+Disk model:
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 200F0D86-C2B4-CB4A-BD51-E9F766D736FE
+
+Device     Start       End   Sectors  Size Type
+/dev/sda1   2048 209717247 209715200  100G Linux filesystem
+
+Filesystem/RAID signature on partition 1 will be wiped.
+
+Command (m for help): wq
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+    <p>※ The above is a 100GB sda1 created for work after initializing the HDD.</p>
+    <p>※ Proceed according to your Situation</p>
+    <br>
+    <h2>2. Format as an EXT4 and Mount</h2>
+    <br>
+    <h5>1) Format HDD(or SSD or USB) Partition to EXT4</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mkfs.ext4 /dev/sda1</code></pre>
+    <h5>2) Mount HDD(or SSD or USB) Partition</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mkdir -p /media/sys
+$ sudo mount /dev/sda1 /media/sys
+</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            925M     0  925M   0% /dev
+tmpfs           200M  3.6M  196M   2% /run
+/dev/mmcblk1p2   30G  4.9G   25G  17% /
+...
+/dev/mmcblk1p1  128M   23M  106M  18% /media/boot
+tmpfs           200M  8.0K  200M   1% /run/user/121
+tmpfs           200M  4.0K  200M   1% /run/user/1001
+/dev/sda1        98G   61M   93G   1% /media/sys
+</code></pre>
+    <br>
+    <h2>3. Modify Setup files</h2>
+    <br>
+    <h5>1) Check UUID</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo lsblk -f
+NAME        FSTYPE   LABEL  UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+...
+sda
+`-sda1      ext4            <u><i>eed45733-3551-4b98-b081-bf7aa29490d1</i></u>   92.9G     0% /media/sys
+mmcblk1
+|-mmcblk1p1 vfat     boot   52AA-6867                             105.4M    17% /media/boot
+`-mmcblk1p2 ext4     rootfs <u><i>e139ce78-9841-40fe-8823-96a304a09859</i></u>   24.3G    17% /
+</code></pre>
+    <h5>2) Modify boot.ini</h5>
+    <p>Change root UUID from mmcblk1p2 to sda1</p>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /media/boot/boot.ini /media/boot/boot.ini.orig
+$ sudo nano /media/boot/boot.ini
+</code></pre>
+    <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code># Boot Args
+setenv bootargs "console=tty1 console=ttySAC2,115200n8 root=UUID=<u><i>e139ce78-9841-40fe-8823-96a304a09859</i></u> rootwait ro fsck.repair=yes net.ifnames=0 ${videoconfig} ${hdmi_phy_control} ${hid_quirks} smsc95xx.macaddr=${macaddr} ${external_watchdog}"
+</code></pre>
+    <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code># Boot Args
+setenv bootargs "console=tty1 console=ttySAC2,115200n8 root=UUID=<u><i>eed45733-3551-4b98-b081-bf7aa29490d1</i></u> rootwait ro fsck.repair=yes net.ifnames=0 ${videoconfig} ${hdmi_phy_control} ${hid_quirks} smsc95xx.macaddr=${macaddr} ${external_watchdog}"
+</code></pre>
+    <h5>3) Modify fstab</h5>
+    <p>Change root from mmcblk1p2 to sda1</p>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/fstab /etc/fstab.orig
+$ sudo nano /etc/fstab
+</code></pre>
+    <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>UUID=e139ce78-9841-40fe-8823-96a304a09859 / ext4 errors=remount-ro,noatime 0 1
+LABEL=boot /media/boot vfat defaults 0 1
+</code></pre>
+    <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>#UUID=e139ce78-9841-40fe-8823-96a304a09859 / ext4 errors=remount-ro,noatime 0 1
+LABEL=boot /media/boot vfat defaults 0 1
+/dev/sda1 / ext4 defaults,noatime 0 1
+</code></pre>
+    <br>
+    <h2>4. Copy the root partition</h2>
+    <br>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo rsync -axv / /media/sys/</code></pre>
+    <br>
+    <h2>5. Check Root Partition</h2>
+    <br>
+    <h5>1) Reset System</h5>
+    <h5>2) Check Root Partition</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            925M     0  925M   0% /dev
+tmpfs           200M  3.6M  196M   2% /run
+/dev/sda1        98G  5.8G   88G   7% /
+...
+/dev/mmcblk1p1  128M   23M  106M  18% /media/boot
+tmpfs           200M  8.0K  200M   1% /run/user/121
+tmpfs           200M  4.0K  200M   1% /run/user/1001
+</code></pre>
+<!--------------------------------------------------->
+<!-- End of Blog Contents                          -->
+<!--------------------------------------------------->
+                  </div><!-- /.blog-post -->
+                </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">Installation Ubuntu on HDD(or SSD of USB) at Odroid-HC2</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+                    <ol class="list-unstyled">
+                      <li><a href="https://yism12.blogspot.com/" style="text-decoration:none">Google Blogger</a></li>
+                    </ol>
+                  </div>
+        </aside><!-- /.blog-sidebar -->
+</div>
+</main>
+  </div>
+</div>
+<br><br><br>
+<!--------------------------------------------------->
+<!--  Fotter                                       -->
+<!--------------------------------------------------->
+<div id = footer>
+    <nav class="navbar navbar-dark flex-md-nowrap p-0 shadow" style="background-color: black;">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Beyond Here By YiWorkDisk</a>
+        <ul class="navbar-nav px-3 col-10">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link"> </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="../js/dashboard.js"></script>
+  </body>
+
+<!--------------------------------------------------->
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+</html>

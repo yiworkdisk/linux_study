@@ -1,0 +1,75 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : LXD & LXC installation on Odroid-HC2(or ARM)
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,lxd,lxc
+generator : YiSM html Generator
+title : How To Install LXD & LXC on Odroid-HC2 (or ARM)
+blog : Linux
+environment :
+  Environment
+    Device : Odroid-HC2
+    OS : Ubuntu-20.04
+youtube : https://youtu.be/q7zRgojTZag
+contents :
+      <h2>1. Install LXD & LXC on Odroid-HC2</h2>
+      <br>
+      <h5>1) Install LXD & LXC on Odroid-HC2</h5>
+<pre><code>$ sudo apt install lxc lxd lxd-client -y</code></pre>
+      <h5>2) ADD LXD Group</h5>
+<pre><code>$ sudo usermod -aG lxd $USER</code></pre>
+      <h5>3) Generate LXD Initial Settiing</h5>
+<pre><code>$ sudo lxd init
+Would you like to use LXD clustering? (yes/no) [default=no]:
+Do you want to configure a new storage pool? (yes/no) [default=yes]:
+Name of the new storage pool [default=default]: Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:
+Create a new ZFS pool? (yes/no) [default=yes]:
+Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]:
+Size in GB of the new loop device (1GB minimum) [default=5GB]:
+Would you like to connect to a MAAS server? (yes/no) [default=no]:
+Would you like to create a new local network bridge? (yes/no) [default=yes]:
+What should the new bridge be called? [default=lxdbr0]:
+What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+Would you like LXD to be available over the network? (yes/no) [default=no]:
+Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:
+</code></pre>
+      <h2>2. Management LXC & LXD</h2>
+      <h5>1)Search LXC Images</h5>
+<pre><code>$ lxc image list imageserver:imagename</code></pre>
+      <h10>Example</h10>
+<pre><code>$ lxc image list images:centos
+$ lxc image list ubuntu:20.04
+$ lxc image list ubuntu:</code></pre>
+      <h5>2) Check LXC Image Infomation</h5>
+<pre><code>$ lxc launch imageserver:imagename instancename</code></pre>
+      <h10>Example</h10>
+<pre><code>$ lxc image info images:centos/7/armhf
+$ lxc image info images:centos/8/arm64
+$ lxc image info ubuntu:20.04/arm64</code></pre>
+      <h5>3) Install LXC Image</h5>
+<pre><code>$ lxc launch imageserver:imagename instancename</code></pre>
+      <h10>Example</h10>
+<pre><code>$ lxc launch ubuntu:20.04/arm64 u2004
+$ lxc launch images:centos/8/arm64 cen8</code></pre>
+      <h5>4) Excute bash of LXC Image</h5>
+<pre><code>$ lxc exec instancename -- /bin/bash</code></pre>
+      <h10>Example</h10>
+<pre><code>$ lxc exec u2004 -- /bin/bash</code></pre>
+      <h5>5) List of Container on Local System</h5>
+<pre><code>$ lxc list</code></pre>
+      <h5>6) Infomation of Container on Local System</h5>
+<pre><code>$ lxc list u2004</code></pre>
+      <h5>7) Start Container on Local System</h5>
+<pre><code>$ lxc start instancename</code></pre>
+      <h10>Example</h10>
+<pre><code>$ lxc start u2004</code></pre>
+      <h5>8) Stop Container on Local System</h5>
+<pre><code>$ lxc stop instancename</code></pre>
+      <h10>Example</h10>
+<pre><code>$ lxc stop u2004</code></pre>
+      <h5>9) Delete Container on Local System</h5>
+<pre><code>$ lxc delete instancename</code></pre>
+      <h10>Example</h10>
+<pre><code>$ lxc delete u2004</code></pre>

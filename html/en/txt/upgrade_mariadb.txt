@@ -1,0 +1,23 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Convert MariaDB from Ubuntu-18.04 to Ubuntu-20.04 By HeidiSQL
+keywords : ubuntu,18.04,20.04,odroid,hc2,xu4,mariadb,mysql,heidisql,upgrade
+generator : YiSM html Generator
+title : How to Upgrade MariaDB from Ubuntu-18.04 to Ubuntu-20.04
+blog : Linux
+environment :
+  Environment
+    u1804 : Ubuntu-18.04
+    u2004 : Ubuntu-20.04
+youtube : https://youtu.be/p2I4K6JaQk4
+contents :
+        <p>If you convert MariaDB from Ubuntu-18.04 to Ubuntu-20.04, you can see error message</p>
+        <p>Row size too large (> 8126). Changing some columns to TEXT or BLOB or using ROW_FORMAT=DYNAMIC or ROW_FORMAT=COMPRESSED may help.</p>
+         In current row format, BLOB prefix of 768 bytes is stored inline</p>
+        <br>
+        <h2>1. Change Row type from Compact to Dynamic</h2>
+        <br>
+        <br>
+        <h2>2. convert MariaDB from Ubuntu-18.04 to Ubuntu-20.04</h2>
+

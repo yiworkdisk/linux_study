@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Lee Sang Mook">
+    <meta name="description" content="Mail Service Installation using Posfix & Dovecot on Ubuntu-20.04">
+    <meta name="keywords" content="ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,postfix,dovecot,mariadb,mysql">
+    <meta name="generator" content="YiSM html Generator">
+    <title>How to Install Postfix & Dovecot with MariaDB (or MySQL) on Ubuntu-20.04</title>
+
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+
+    <!--------------------------------------------------------------------------->
+    <!-- 한글 폰트                                                                    -->
+    <!--------------------------------------------------------------------------->
+
+     @font-face { 
+		  font-family: 'font_ko';
+		  src:url(../../font/NanumGothic.ttf); 
+    }
+
+    <!--------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------->
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../css/blog.css" rel="stylesheet">
+  </head>
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   <body>
+<!--------------------------------------------------->
+<!--  Header                                       -->
+<!--------------------------------------------------->
+   <div id = 'header'>
+<!--------------------------------------------------->
+<!--  NavBar - Top -01                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark" style = "background-color: black;">
+      <a class="navbar-brand">Beyond Here</a>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../index.html">Home</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/blog.html">Blog</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+              <a class="nav-link" href="../pages/about.html">About</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3 col-6">
+          <li class="nav-item text-nowrap">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap active">
+               <a class="nav-link"></a>
+          </li>
+      </ul>
+      <a href="../../ko/linux/install_postfix.html">
+      <button type="button" class="btn btn-secondary">한글</button>
+</nav>
+<!--------------------------------------------------->
+<!--  NavBar - Top -02                             -->
+<!--------------------------------------------------->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../pages/blog.html">Blog</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="linux_blog.html">Linux</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">▶</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">How to Install Postfix & Dovecot with MariaDB (or MySQL) on Ubuntu-20.04</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+   </div>
+<!--------------------------------------------------->
+<!--  End of Header                                -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<div class="container-fluid">
+  <br>
+  <div class="row">
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog List                                     -->
+<!--------------------------------------------------->
+    <aside class="col-md-3 blog-sidebar">
+        <div class="p-3 mb-1 bg-light rounded">
+            <h4 class="font-italic">Linux Blog</h4>
+<!--------------------------------------------------->
+<!-- How to Install Anaconda on Ubuntu -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_anaconda_ubuntu.html" style="text-decoration:none">How to Install Anaconda on Ubuntu</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_ubuntu_hdd_hc2.html" style="text-decoration:none">How to Install Ubuntu on HDD (or SSD of USB) at Odroid-HC2</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Bind9 on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_bind.html" style="text-decoration:none">How to Install Bind9 on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Conda on Odroid-C2 (or ARM64) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_conda_c2.html" style="text-decoration:none">How to Install Conda on Odroid-C2 (or ARM64)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install Docker on Odroid-HC2 (or ARM) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_docker_hc2.html" style="text-decoration:none">How To Install Docker on Odroid-HC2 (or ARM)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install Docker on Odroid-C2 (or ARM64) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_docker_c2.html" style="text-decoration:none">How To Install Docker on Odroid-C2 (or ARM64)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install LXD & LXC on Odroid-HC2 (or ARM) -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_lxd_hc2.html" style="text-decoration:none">How To Install LXD & LXC on Odroid-HC2 (or ARM)</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install MariaDB on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_mariadb.html" style="text-decoration:none">How to Install MariaDB on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install NGINX on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="Install_nginx.html" style="text-decoration:none">How to Install NGINX on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install OpenVPN on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_openvpn.html" style="text-decoration:none">How to Install OpenVPN on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Postfix & Dovecot with MariaDB (or MySQL) on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_postfix.html" style="text-decoration:none">How to Install Postfix & Dovecot with MariaDB (or MySQL) on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How To Install Ubuntu-20.04 on Odroid-HC2 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_ubuntu2004_hc2.html" style="text-decoration:none">How To Install Ubuntu-20.04 on Odroid-HC2</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install WiFi on Ubuntu-Server 20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_ubuntu_server_wifi.html" style="text-decoration:none">How to Install WiFi on Ubuntu-Server 20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Windows Fonts on Ubuntu -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_windows_fonts.html" style="text-decoration:none">How to Install Windows Fonts on Ubuntu</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install WordPress with MariaDB (or MySQL) on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_wrodpress.html" style="text-decoration:none">How to Install WordPress with MariaDB (or MySQL) on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install XRDP on Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_xrdp.html" style="text-decoration:none">How to Install XRDP on Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Upgrade MariaDB from Ubuntu-18.04 to Ubuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="upgrade_mariadb.html" style="text-decoration:none">How to Upgrade MariaDB from Ubuntu-18.04 to Ubuntu-20.04</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install Armbian on Orangi Pi-R1 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_armbian_r1.html" style="text-decoration:none">How to Install Armbian on Orangi Pi-R1</a></li>
+            </ol>
+<!--------------------------------------------------->
+<!-- How to Install RoundCube with Postfix, Dovecot, NGINX, MariaDB (or MySQL) on Ubuuntu-20.04 -->
+<!--------------------------------------------------->
+            <ol class="list-unstyled" style="font-size:medium;">
+                <li><a href="install_roundcube.html" style="text-decoration:none">How to Install RoundCube with Postfix, Dovecot, NGINX, MariaDB (or MySQL) on Ubuuntu-20.04</a></li>
+            </ol>
+        </div>
+    </aside><!-- /.blog-sidebar -->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!-- Blog & Right                                  -->
+<!--------------------------------------------------->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-md-3">
+   <div class="row">
+<!--------------------------------------------------->
+<!-- Blog Main                                     -->
+<!--------------------------------------------------->
+                <div class="col-md-8 blog-main">
+                  <div class="blog-post">
+<!--------------------------------------------------->
+<!-- Blog Title & YouTube                          -->
+<!--------------------------------------------------->
+                    <h2 class="blog-post-title"><b>How to Install Postfix & Dovecot with MariaDB (or MySQL) on Ubuntu-20.04</b></h2>
+                    <p class="blog-post-meta">Beyond Here</a></p>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog Environment                              -->
+<!--------------------------------------------------->
+<hr>
+<pre>
+  Environment
+    Device :  Odroid-HC2
+    OS : Ubuntu-20.04
+    Pre Insalled App : MariaDB(or MySQL)
+
+</pre>
+<hr>
+<!--------------------------------------------------->
+<!-- Blog YouTube                                  -->
+<!--------------------------------------------------->
+      <div class="separator" style="clear: both; text-align: center;">
+            <iframe
+              allowfullscreen=""
+              class="BLOG_video_class"
+              height="600"
+              width="720"
+              src="https://www.youtube.com/embed/UXVmEPiLXPA"
+              youtube-src-id="UXVmEPiLXPA"
+            ></iframe>
+        </div>
+        <br>
+<br>
+<!--------------------------------------------------->
+<!-- Blog Contents                                 -->
+<!--------------------------------------------------->
+
+        <h2>1. Install Postfix & Dovecot</h2>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo apt-get install postfix postfix-mysql dovecot-core dovecot-imapd dovecot-lmtpd  dovecot-pop3d dovecot-mysql
+$ sudo systemctl restart dovecot
+$ sudo netstat -lnp</code></pre>
+        <h2>2. Setup mariadb</h2>
+        <hr>
+<pre>
+    Environment
+    database :  mail_server
+    accout : usermail
+    password : test@test
+    host : localhost
+</pre>
+        <hr>
+        <h5>1) Generate Database for mail</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo mysql -u root -p</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> create database mail_server;</code></pre>
+        <h5>2) Generate Acccout for mail</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> GRANT SELECT ON mail_server.* TO 'usermail'@'127.0.0.1' IDENTIFIED BY 'test@test';
+> flush privileges;
+> GRANT SELECT ON mail_server.* TO 'usermail'@'localhost' IDENTIFIED BY 'test@test';
+> flush privileges;</code></pre>
+        <h5>3) Generate Virtual Domain Table</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> USE mail_server;
+> CREATE TABLE `virtual_domains` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+        <h5>4) Generate Virtual User Table</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> CREATE TABLE `virtual_users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `domain_id` INT NOT NULL,
+  `password` VARCHAR(106) NOT NULL,
+  `email` VARCHAR(120) NOT NULL,
+  PRIMARY KEY (`id`),
+UNIQUE KEY `email` (`email`),
+FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+        <h5>4)Generate Virtual Alias Table</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> CREATE TABLE `virtual_aliases` (
+   `id` INT NOT NULL AUTO_INCREMENT,
+   `domain_id` INT NOT NULL,
+   `source` varchar(100) NOT NULL,
+   `destination` varchar(100) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+        <h5>5) Insert Virtual Domain</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> INSERT INTO mail_server.virtual_domains
+  (`id` ,`name`)
+VALUES
+  ('1', 'test.com'),
+  ('2', 'test.test.com'),
+  ('3', 'test'),
+  ('4', 'mail.test.com'),
+  ('5', 'localhost.test.com'),
+  ('6', 'localhost');</code></pre>
+        <h5>6) Insert Virtual Mail User</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> INSERT INTO `mail_server`.`virtual_users`
+  (`id`, `domain_id`, `password` , `email`)
+VALUES
+  ('1', '1', ENCRYPT('test@test', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'test@test.com'),
+  ('2', '1', ENCRYPT('test@test', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'net@test.com'),
+  ('3', '1', ENCRYPT('test@test', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'net1@test.com'),
+  ('4', '1', ENCRYPT('test@test', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'net2@test.com');
+</code></pre>
+        <h5>7) Insert Virtual Alias</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> INSERT INTO `mail_server`.`virtual_aliases`
+  (`id`, `domain_id`, `source`, `destination`)
+VALUES
+  ('1', '1', 'admin@test.com', 'test@test.com'),
+  ('2', '1', 'root@test.com', 'test@test.com');</code></pre>
+        <h5>7) Check Virtual Table</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>> SELECT * FROM mail_server.virtual_domains;
+> SELECT * FROM mail_server.virtual_users;
+> SELECT * FROM mail_server.virtual_aliases;
+> quit;</code></pre>
+        <br>
+        <h2>3. Setup Postfix</h2>
+        <br>
+        <h5>1) Setup main.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.original
+$ sudo nano /etc/postfix/main.cf</code></pre>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code># TLS parameters
+smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_tls_security_level=may</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code># TLS parameters
+smtpd_use_tls = yes
+smtpd_tls_cert_file=/etc/dovecot/private/dovecot.pem
+smtpd_tls_key_file=/etc/dovecot/private/dovecot.key
+smtpd_tls_security_level=may</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>smtp_tls_CApath=/etc/ssl/certs
+smtp_tls_security_level=may
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scach</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>smtp_use_tls = yes
+#smtp_tls_CApath=/etc/ssl/certs
+smtp_tls_security_level=may
+#smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_auth_enable = yes
+smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated,  reject_unauth_destination</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mydestination = $myhostname, test.com, ubt64.test.com, localhost.test.com, localhost</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>mydestination = localhost</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>#Handing off local delivery to Dovecot's LMTP, and telling it where to store mail
+virtual_transport = lmtp:unix:private/dovecot-lmtp
+#Virtual domains, users, and aliases
+virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
+virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
+virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
+        <h5>2) Generate mysql-virtual-mailbox-domains.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
+password = test@test
+hosts = 127.0.0.1
+dbname = mail_server
+query = SELECT 1 FROM virtual_domains WHERE name='%s'</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
+$ sudo postmap -q test.com mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf</code></pre>
+        <h5>3) Generate mysql-virtual-mailbox-maps.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>sudo nano /etc/postfix/mysql-virtual-mailbox-maps.cf</code></pre>
+        <h10>Insert Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
+password = test@test
+hosts = 127.0.0.1
+dbname = mail_server
+query = SELECT 1 FROM virtual_users WHERE email='%s'</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
+$ sudo postmap -q test.com mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf</code></pre>
+        <h5>4) Generate mysql-virtual-alias-maps.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>user = usermail
+password = test@test
+hosts = 127.0.0.1
+dbname = mail_server
+query = SELECT destination FROM virtual_aliases WHERE source='%s'</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo service postfix restart
+$ sudo postmap -q admin@test.com mysql:/etc/postfix/mysql-virtual-alias-maps.cf</code></pre>
+        <h5>5) Setup master.cf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/postfix/master.cf /etc/postfix/master.cf.orig
+$ sudo nano /etc/postfix/master.cf</code></pre>
+        <h10>Change Configuration<h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#submission inet n       -       y       -       -       smtpd
+#  -o syslog_name=postfix/submission
+#  -o smtpd_tls_security_level=encrypt
+#  -o smtpd_sasl_auth_enable=yes
+#  -o smtpd_tls_auth_only=yes
+#  -o smtpd_reject_unlisted_recipient=no
+#  -o smtpd_client_restrictions=$mua_client_restrictions
+#  -o smtpd_helo_restrictions=$mua_helo_restrictions</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>submission inet n       -       y       -       -       smtpd
+  -o syslog_name=postfix/submission
+  -o smtpd_tls_security_level=encrypt
+  -o smtpd_sasl_auth_enable=yes
+#  -o smtpd_tls_auth_only=yes
+#  -o smtpd_reject_unlisted_recipient=no
+  -o smtpd_client_restrictions=permit_sasl_authenticated,reject
+#  -o smtpd_helo_restrictions=$mua_helo_restrictions</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo systemctl restart postfix
+$ sudo netstat -lnp
+check port 25 & 587</code></pre>
+        <br>
+        <h2>4. Setup Dovecot</h2>
+        <br>
+        <h5>1) Backup Dovecot Configuration</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/dovecot/dovecot.conf /etc/dovecot/dovecot.conf.orig
+$ sudo cp /etc/dovecot/conf.d/10-mail.conf /etc/dovecot/conf.d/10-mail.conf.orig
+$ sudo cp /etc/dovecot/conf.d/10-auth.conf /etc/dovecot/conf.d/10-auth.conf.orig
+$ sudo cp /etc/dovecot/dovecot-sql.conf.ext /etc/dovecot/dovecot-sql.conf.ext.orig
+$ sudo cp /etc/dovecot/conf.d/10-master.conf /etc/dovecot/conf.d/10-master.conf.orig
+$ sudo cp /etc/dovecot/conf.d/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf.orig</code></pre>
+        <h5>2) Setup dovecot.conf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/dovecot.conf</code></pre>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>!include_try /usr/share/dovecot/protocols.d/*.protocol</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>!include_try /usr/share/dovecot/protocols.d/*.protocol
+protocols = imap pop3 lmtp</code></pre>
+        <h5>3) Setup 10-mail.conf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-mail.conf</code></pre>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mail_location = mbox:~/mail:INBOX=/var/mail/%u</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>#mail_location = mbox:~/mail:INBOX=/var/mail/%u
+mail_location = maildir:/var/mail/vhosts/%d/%n</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>mail_privileged_group = mail</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>mail_privileged_group = mail</code></pre>
+        <h5>4) Generate domain per Virtual Host</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo ls -ld /var/mail
+$ sudo mkdir -p /var/mail/vhosts/test.com</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo groupadd -g 5000 vmail
+$ sudo useradd -g vmail -u 5000 vmail -d /var/mail
+$ sudo chown -R vmail:vmail /var/mail</code></pre>
+        <h5>5) Setup 10-auth.conf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-auth.conf</code></pre>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#disable_plaintext_auth = yes</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>disable_plaintext_auth = yes</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>auth_mechanisms = plain</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>auth_mechanisms = plain login</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>!include auth-system.conf.ext
+#!include auth-sql.conf.ext</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>#!include auth-system.conf.ext
+!include auth-sql.conf.ext</code></pre>
+        <h5>6) Setup auth-sql.conf.ext</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo cp /etc/dovecot/conf.d/auth-sql.conf.ext /etc/dovecot/conf.d/auth-sql.conf.ext.orig
+$ sudo nano /etc/dovecot/conf.d/auth-sql.conf.ext</pre></code>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>passdb {
+  driver = sql
+  # Path for SQL configuration file, see example-config/dovecot-sql.conf.ext
+  args = /etc/dovecot/dovecot-sql.conf.ext
+}
+userdb {
+  driver = sql
+  args = /etc/dovecot/dovecot-sql.conf.ext
+}</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>passdb {
+  driver = sql
+  # Path for SQL configuration file, see example-config/dovecot-sql.conf.ext
+  args = /etc/dovecot/dovecot-sql.conf.ext
+}
+userdb {
+  driver = static
+  args = uid=vmail gid=vmail home=/var/mail/vhosts/%d/%n
+} </code></pre>
+        <h5>7) Setup dovecot-sql.conf.ext</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/dovecot-sql.conf.ext</code></pre>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code># Database driver: mysql, pgsql, sqlite
+#driver =</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code># Database driver: mysql, pgsql, sqlite
+driver = mysql</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#connect</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>connect = host=127.0.0.1 dbname=mail_server user=usermail password=test@test</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#default_pass_scheme = MD5</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>default_pass_scheme = SHA512-CRYPT</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>#password_query = \
+#  SELECT username, domain, password \
+#  FROM users WHERE username = '%n' AND domain = '%d'</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>password_query = \
+  SELECT email as user, password \
+  FROM virtual_users WHERE email='%u'; </code></pre>
+        <h5>8) Change File Owner & Permissions</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo chown -R vmail:dovecot /etc/dovecot
+$ sudo chmod -R 771 /etc/dovecot </code></pre>
+        <h5>9) Setup 10-master.conf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-master.conf</code></pre>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service imap-login {
+  inet_listener imap {
+    #port = 143
+  }
+  inet_listener imaps {
+    #port = 993
+    #ssl = yes
+  }
+}</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>service imap-login {
+  inet_listener imap {
+    port = 143
+  }
+  inet_listener imaps {
+    port = 993
+    ssl = yes
+  }
+}</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service pop3-login {
+  inet_listener pop3 {
+    #port = 110
+  }
+  inet_listener pop3s {
+    #port = 995
+    #ssl = yes
+  }
+}</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>service pop3-login {
+  inet_listener pop3 {
+    port = 110
+  }
+  inet_listener pop3s {
+    port = 995
+    ssl = yes
+  }
+}</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service lmtp {
+  unix_listener lmtp {
+    #mode = 0666
+  }</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>service lmtp {
+   unix_listener /var/spool/postfix/private/dovecot-lmtp {
+    mode = 0600
+    user = postfix
+    group = postfix
+  }</code></pre>
+        <h10>Change service auth parameter</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>  unix_listener auth-userdb {
+    #mode = 0666
+    #user =
+    #group =
+  }</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>  unix_listener auth-userdb {
+    mode = 0600
+    user = vmail
+    #group =
+  }</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>  # Postfix smtp-auth
+  #unix_listener /var/spool/postfix/private/auth {
+  #  mode = 0666
+  #}</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>  # Postfix smtp-auth
+  unix_listener /var/spool/postfix/private/auth {
+    mode = 0666
+    user = postfix
+    group = postfix
+  }</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>  # Auth process is run as this user.
+  #user = $default_internal_user
+}</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>  # Auth process is run as this user.
+  #user = $default_internal_user
+  user = dovecot
+}</code></pre>
+        <h10>Change service auth-worker parametet</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>service auth-worker {
+  # Auth worker process is run as root by default, so that it can access
+  # /etc/shadow. If this isn't necessary, the user should be changed to
+  # $default_internal_user.
+  #user = root
+}</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>service auth-worker {
+  # Auth worker process is run as root by default, so that it can access
+  # /etc/shadow. If this isn't necessary, the user should be changed to
+  # $default_internal_user.
+  user = vmail
+}</code></pre>
+        <h5>10) Setup 10-ssl.conf</h5>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo nano /etc/dovecot/conf.d/10-ssl.conf</code></pre>
+        <h10>Change Configuration</h10>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>ssl = yes</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>ssl = required</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem; margin-bottom: 0;"><code>ssl_cert = &lt;/etc/dovecot/private/dovecot.pem
+ssl_key = &lt;/etc/dovecot/private/dovecot.key</code></pre>
+        <h10>==></h10>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>ssl_cert = &lt;/etc/dovecot/private/dovecot.pem
+ssl_key = &lt;/etc/dovecot/private/dovecot.key</code></pre>
+<pre style="background-color: lightcyan; padding: 0.5rem;"><code>$ sudo systemctl restart dovecot</code></pre>
+<br>
+<div class="p-3 mb-1 bg-light rounded">
+<h4>Additional Resources</h4>
+<br>
+<p><a href= "../linux/install_mariadb.html" style="text-decoration:none">How to Install MariaDB on Ubuntu-20.04</a></p>
+<p><a href= "../etc/mysql_commands.html" style="text-decoration:none">MariaDB (or MYSQL) Commands</a></p>
+</div><!--------------------------------------------------->
+<!-- End of Blog Contents                          -->
+<!--------------------------------------------------->
+                  </div><!-- /.blog-post -->
+                </div><!-- /.blog-main -->
+<!--------------------------------------------------->
+<!-- Blog Right Side                               -->
+<!--------------------------------------------------->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">Mail Service Installation using Posfix & Dovecot on Ubuntu-20.04</p>
+          </div>
+          <div class="p-4">
+            <h4 class="font-italic">Elsewhere</h4>
+                    <ol class="list-unstyled">
+                      <li><a href="https://yism12.blogspot.com/" style="text-decoration:none">Google Blogger</a></li>
+                    </ol>
+                  </div>
+        </aside><!-- /.blog-sidebar -->
+</div>
+</main>
+  </div>
+</div>
+<br><br><br>
+<!--------------------------------------------------->
+<!--  Fotter                                       -->
+<!--------------------------------------------------->
+<div id = footer>
+    <nav class="navbar navbar-dark flex-md-nowrap p-0 shadow" style="background-color: black;">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Beyond Here By YiWorkDisk</a>
+        <ul class="navbar-nav px-3 col-10">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link"> </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<!--------------------------------------------------->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="../js/dashboard.js"></script>
+  </body>
+
+<!--------------------------------------------------->
+
+<!----------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------->
+</html>

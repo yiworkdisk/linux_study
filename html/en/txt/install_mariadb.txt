@@ -1,0 +1,115 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : MariaDB installation using APT on Ubuntu 20.04
+keywords : ubuntu,20.04,ubuntu-20.04,odroid,hc2,xu4,mariadb
+generator : YiSM html Generator
+title : How to Install MariaDB on Ubuntu-20.04
+blog : Linux
+environment :
+  Environment
+    Device :  Odroid-HC2 (or XU4)
+    OS : Ubuntu-20.04
+    Host : test (192.168.101.100)
+youtube : https://youtu.be/UXVmEPiLXPA
+contents :
+        <h2>1. Install MariaDB</h2>
+<pre><code>$ sudo apt install mariadb-server mariadb-common mycli python3-mysqldb -y</code></pre>
+        <br>
+        <h2>2. Setup intial mariadb configuration</h2>
+        <br>
+        <h5>MariaDB Initial Setup</h5>
+<pre><code>$ sudo mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user.  If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+Set root password? [Y/n]
+New password:
+Re-enter new password:
+Password updated successfully!
+Reloading privilege tables..
+... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n]
+... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n]
+... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n]
+- Dropping test database...
+... Success!
+- Removing privileges on test database...
+... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n]
+... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!</code></pre>
+        <h5>MariaDB Server IP Change</h5>
+<pre><code>$ sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf.orig
+$ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+</code></pre>
+        Change Configuration
+<pre><code>bind-address            = 127.0.0.1
+</code></pre>
+        <h10>==></h10>
+<pre><code>bind-address            = 192.168.101.100
+</code></pre>
+<pre><code>$ sudo systemctl restart mariadb.service
+</code></pre>
+        <br>
+        <h2>3. Generate Management Account</h3>
+        <br>
+        <hr>
+<pre><code>  Management Account
+    accout : test
+    password : test@test</code></pre>
+        <hr>
+        <br>
+        <h5>MriadDB Login</h5>
+<pre><code>$ sudo mysql -u root -p</code></pre>
+        <h5>Create MariaDB Account</h5>
+<pre><code>> create user 'test'@'%' identified by 'test@test';
+> grant all privileges on *.* to  'test'@'%' with grant option;
+> flush privileges;
+> quit;</code></pre>
+        <br>
+        <h2>4. Verify MariaDB</h2>
+        <br>
+<pre><code>$ mycli -h 192.168.101.100 -u test</code></pre>
+

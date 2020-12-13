@@ -1,0 +1,104 @@
+lang : en
+charset : utf-8
+author : Lee Sang Mook
+description : Anaconda Installation on Ubuntu-20.04
+keywords : ubuntu,20.04,ubuntu-20.04,anaconda,conda,x64,x86_x64
+generator : YiSM html Generator
+title : How to Install Anaconda on Ubuntu
+blog : Linux
+environment :
+  Environment
+    Device : x86_x64
+    OS : Ubuntu-20.04
+youtube : https://youtu.be/RY6fehVrl-o
+contents :
+        <p>※ If you want to install Conda on ARM64, </p>
+        <p>you can do it by MiniForge (Conda for ARM64) </p>
+        <br>
+        <h2>1. Generate New Account for Anaconda</h2>
+        <br>
+<pre><code>$ sudo adduser conda
+Adding user `conda' ...
+Adding new group `conda' (1001) ...
+Adding new user `conda' (1001) with group `conda' ...
+Creating home directory `/home/conda' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for aa
+Enter the new value, or press ENTER for the default
+        Full Name []: conda
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n]</code></pre>
+<pre><code>$ su conda</code></pre>
+        <br>
+        <h2>2. Install Anaconda</h2>
+        <br>
+        <h5>1) Download Anaconda</h5>
+<pre><code>$ cd ~
+$ wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+$ ls
+$ bash Anaconda3-2020.11-Linux-x86_64.sh
+$ exit</code></pre>
+        <p>※ Install Mini-Forge to Install on ARM64</p>
+<pre><code>$ su conda</code></pre>
+<pre><code>$ cd ~</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre></code>$ conda update --all -y</code></pre>
+        <h5>2) Generate Python2.7 Environment</h5>
+        <p>Generate Conda Environment</p>
+<pre><code>$ conda create -n conda27 anaconda python=2.7 -y</code></pre>
+        <p>Activate Conda Environment</p>
+<pre><code>$ conda activate conda27</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre><code>$ conda update --al -yl</code></pre>
+        <p>Install Packages</p>
+<pre><code>$ conda install paramiko pymysql beautifulsoup4 jupyterlab pandas -y</code></pre>
+        <p>Deactivate Conda Environment</p>
+<pre><code>$ conda deactivate</code></pre>
+        <br>
+        <h5>3) Generate Python3.7 Environment</h5>
+        <p>Generate Conda Environment</p>
+<pre><code>$ conda create -n conda37 anaconda python=3.7 -y</code></pre>
+        <p>Activate Conda Environment</p>
+<pre><code>$ conda activate conda37</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre><code>$ conda update --all -y</code></pre>
+        <p>Install Packages</p>
+<pre><code>$ conda install paramiko pymysql bs4 jupyterlab pandas tensorflow -y</code></pre>
+        <p>Deactivate Conda Environment</p>
+<pre><code>$ conda deactivate</code></pre>
+        <br>
+        <h5>4) Generate Python3.8 Environment</h5>
+        <p>Generate Conda Environment</p>
+<pre><code>$ conda create -n conda38 anaconda python=3.8 -y</code></pre>
+        <p>Activate Conda Environment</p>
+<pre><code>$ conda activate conda38</code></pre>
+        <p>Upgrade Conda Environment</p>
+<pre><code>$ conda update --all -y</code></pre>
+        <p>Install Packages</p>
+<pre><code>$ conda install paramiko pymysql bs4 jupyterlab pandas tensorflow -y</code></pre>
+        <p>Deactivate Conda Environment</p>
+<pre><code>$ conda deactivate</code></pre>
+        <br>
+        <p>※ Anaconda for Windows10 is Not Supported tensorflow on Python3.8</p>
+        <br>
+        <h2>Basic Command of Conda</h2>
+        <br>
+        <p style="margin-bottom: 0;">Show installed Environments List</p>
+        <pre><code>conda env list</code></pre>
+        <p style="margin-bottom: 0;">Generate an Environment</p>
+        <pre><code>conda create -n yourenvironment yourpackages</code></pre>
+        <p style="margin-bottom: 0;">Remove an Environment</p>
+        <pre><code>conda remove --name myenv</code></pre>
+        <p style="margin-bottom: 0;">Upgrade an Package</p>
+        <pre><code>conda update mypackage</code></pre>
+        <p style="margin-bottom: 0;">Upgrade all Packages</p>
+        <pre><code>conda update --all</code></pre>
+        <p style="margin-bottom: 0;">Show installed Packages</p>
+        <pre><code>conda list</code></pre>
+
